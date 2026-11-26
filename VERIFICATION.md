@@ -1,6 +1,8 @@
-# 本地验证记录
+# 历史构建与验证记录
 
-验证日期：2026-11-26。测试环境：macOS ARM64、Python 3.13.5。本次验证使用下载保存的真实上游规则快照；各输入的完整 SHA-256 见 `dist/report.json`。
+本文是指定版本的历史证据，不是最新规则的持续健康报告。构建代码为 `415018a`，首次发布规则提交为 `6941e6580eb92c41bf76fb9fcfac03df8100d895`。后续自动更新不自动继承本记录的测试结论。
+
+验证日期：2026-11-26。测试环境：macOS ARM64、Python 3.13.5。本次验证使用下载保存的真实上游规则快照；各输入的完整 SHA-256 见 [对应发布的 report.json](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/blob/6941e6580eb92c41bf76fb9fcfac03df8100d895/report.json)。
 
 ## 生成结果
 
@@ -58,3 +60,13 @@
 - `report.json`、`SOURCES.md`、`clash.yaml`、`clash-allow.yaml`、`adguard.txt`、`mihomo.example.yaml` 与 `sources/home-dns.txt` 的公开 Raw 地址均返回 HTTP 200。
 - 在线三个规则文件的 SHA-256 均与在线报告一致。Home DNS 原始快照 SHA-256 与上游固定提交下载的文件一致；`activity-ag.awemeughun.com` 已出现在在线两种拦截订阅中。
 - 独立调用 GitHub Contents API，逐个核对上游固定提交中的文件：四个 Git Blob SHA-1 均与原始快照计算值一致。原始 API 元数据见 `docs/source-verification-2026-11-26.json`。
+
+## 2026-11-26 工程文档整理
+
+本轮以 `a213099` 为代码基线更新文档，不修改生成器、规则配置或工作流。明确划分当前能力、历史验证和待实施设计；使用与维护指南移至 `docs/`。
+
+新增业务保护、风险差异、持续内核测试、候选晋升和回滚的设计及任务，均尚未实现。此前静态检查发现的 Home DNS 保护范围冲突仅是待核对线索，不能记录为本项目已经实机证实的故障。
+
+目录与目标架构见 [文档索引](docs/README.md)，后续阶段进度见 [实施计划](docs/roadmap.md)。
+
+本轮检查：本地 Markdown 链接目标、代码块闭合、JSON 配置示例和空白检查通过；既有 20 项测试重新运行通过。未重新拉取规则、重跑实际内核或实施候选迁移，因为本轮只修改文档。
