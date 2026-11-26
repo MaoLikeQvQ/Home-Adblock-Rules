@@ -107,6 +107,1948 @@
           "expected": "block"
         }
       ],
+      "allowlist_cases": [
+        {
+          "id": "allow-1ee99d30e858b14d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d3f0a9beec2ac600",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-878be80443d20ad1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-702aa6ae628c8e05",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-70b4f791a3634982",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c39c15eb0d7fab70",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b4e25af7d76c9fe4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e68cb97cafadd373",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-810e0bd35ca52f39",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0b3f3d72056063c7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-339ecd77d8635239",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bd23fdd39744c2af",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3edca87ef026ca55",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2ce11d723599784d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d88cee34e234df21",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0c094a4861c3283c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b50e92d1fa52c773",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5f0c1466c8e0b0e8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-dd100c6a0542c967",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-254d5558a69e8b37",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8fc13b50038c7346",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2f7699cac8fc7452",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3d3cbeff4f2b93d8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-643b0600df807f2c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d3fdb3a2b33213fd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d7f7ac16b0d36590",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5739d4c24bb490f1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9151b472904bfc1b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-924a867f3aa385de",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b0bd4ed6d6d809e1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-80093c93c1a97567",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-21b595bf24202bc8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e16bc854546fc8ab",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-210a66a85392272e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3f9557a559ae6ed4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-88d3fbd1c2a7f52a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c7d29105e13ca37a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-580a6389d818b108",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9ce1dee30bbe0f48",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7642f41c157c3026",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bbda6ef84176a40c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6395aabf0a695880",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a61fad9f2ab461d2",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ac37516317d911ae",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6db8bd4fe361ae50",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1cca04a70366f450",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cfd700f4855a6ba8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a95a6dc113e72225",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0e37399359dcf18f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c2aa1513bea9d8e1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-523080eb4ab9be4e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a5906192498dea94",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-87489c64a7f90f21",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d7bfda1bcaea8601",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b8c0d8155acf66a6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c111d9f495c71308",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-af945dc99fa94542",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-80ec49e1f2349033",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-44e86b403c0b11f9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6d026b66489d762a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-373c4b0207492aba",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5eb93738d6d2d41d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0cf8c2210110d730",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9499e88d7e56213a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ecdfbc5237cb6857",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-da727b8543c8dc67",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b627fde077a7f4dc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-003ed376cecb6244",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-98c30bcbf2a18378",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e431829f64ada845",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d2007147f1dd57bf",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0d26bd4ff0d8b6ae",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0b350f81417532a3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ca975a55eb492db1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f55a7106095123a0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-024c885893f5d121",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ec488577c8122b07",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5c08615b4a772936",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-edc30dcb40478253",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-785671ecbf4649fa",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6e655483916d4db6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5e7d9cd52de42914",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-03137bce96b46a4b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-af959c03f455b6a4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c790df888eba59da",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2936d828b710c03b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cbbac611e306876c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-40e875ab18a148dd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8cfa5f9d11b423da",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7aaa67f1d08f4c06",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d05b6861071ec3f8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0007eec627ae0db5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-96790fcb5a37af74",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f003356e19451b57",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-08f729d3eeca6db1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-51768f33ee2bdc11",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-daad0b6217df6270",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5c31c13e44cd3590",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9d30cfefee0af659",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1aca0d7724f90641",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1ad44b7e97c2541a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fd414ebb0697ae80",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-19ffeb097f1ed682",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0348367708133183",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b7792a433aa59507",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-47598e8cbf34a343",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d8b028b968f5bdce",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4b9e1644c8d23848",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4aaecfe518173d61",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-70ff96b78e39b2f6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-55a9a11edb519f6f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-aaa13e3cfbc9e40c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b31fc979f12405ce",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2a681ecc3a937303",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7e3d4b8bcbcc12a9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e72f90ebbd9e1895",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-47dcd80b67136001",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-332711a165e6ce98",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fb862f55b10fe336",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fd0ce796b90a308a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-62b1957f02682923",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7aabf95ddc995ed0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-52df7a32962713ea",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-659cba42a3ce4819",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ab4a61bd01beecc0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-76c9055872ae084f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e25afc72d0e014e7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9cbc52707cd741f8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7e5a6331e8fb0dc2",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8e31273b0775ecb9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8318b1b6a8aeb8ad",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d6fbc3081ac98bf3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-717155b209318572",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bc800ed7a27fb876",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9fa1363407485455",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-094aad8910d43f94",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-63fe66da4cfc6678",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3bcab7a2fa796413",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5427cf2508d22436",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1d7d3a0ee82a0a62",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-efe11d790052d5cd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8d43b7e4dd3fc8dd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e089fa6fa750744d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-82312b454bda1562",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a627a88778204846",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5bfbc9dcddba3538",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-68239bd20a400223",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-eace7911a9155292",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-76a9b7173189e7c2",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-88e24e50dad16528",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7775eceacc75adfb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c4aaaea06fe64f7a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-73439e90d419afd9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-dabed285f6d51c08",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2bb2abd76579fd36",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c7ec70a960372bba",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b1a7f6594b256d1d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-74607fbfe8e5caf4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-17abcbbe6cba89de",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ffe1854da302d3f2",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8ed0e4b7f8ccc435",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f631476106114dff",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-dff2d16093804467",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a2d04c3b5c592f1b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bb9ce94e771cb30b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c74c298ea4e6107b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-feb380399bfe2f68",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c8777874cd521f7e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-16bd2f12278601c3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d0e165aab2cf6fb7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-69aab1c94a0e0fbc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3f271ce880f09308",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c5d0b62aef1fd40d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-47711207ff479511",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f6952f341bb53149",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cd17506f93b4cb9f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c9d6a176e1c088ac",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8e5a9f03a7ffa025",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1dfabc4e74155e71",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9f839f6a3eeeef2e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e7c6f0d9f109a217",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-08fb1db6ffbb53e0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b63e92f85c3ace5a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-479fbadc84e33283",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b8e4a91593297dc7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8456248a47f220e0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9ede52c2afccac66",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1000ba350e51cbd6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4e4d71df3ceb7ea0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0707b699b6720dd9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a61ca5e909a140aa",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3cafb790213e0d66",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c2b97f4d737d92f9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ad7c50167d734147",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4afa654016a5899b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2d17e3087bc159a7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b949ac57ef8e34f8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a4540c8e9816d839",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-948e06fb745bcfe5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-634988577ec6a063",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ce4f23968f51ed93",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2411e4c0771249c5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-27147f26dd8747d4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b8af9bafdef50b8b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b3d62b9f15e184a8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0983a27f5fb3dca6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2a4bf29cafe69a69",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3634b3731dc6525f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0ee14480018e5217",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e3b286d2f321b75c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-81d1a87d487ccbe0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f0ba749334f51878",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-126b5525c5c455b4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4919b6f203af4047",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-64a1b15eb44d543c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7c6adaba2d1a69fb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-688a92926dc1184d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-28f323954a115d13",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d30011b424498e9d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-40b6777f52006262",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e1187c98d15d5a2b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-54fb4560d25e48d3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6db1845e81f9cafe",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cd97887b268f5627",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-10d70955eb277277",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cc9780c4d2af7479",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-440e0424a3245860",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-16582531186105dc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-40f612167aa2023c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6d3676ce53d497cd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-354375991df68342",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a54add6e80e5a7d3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-70730cdfc830fadb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-574cbb327570be70",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-57316faebf713186",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f0a6d026b7c60bb7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-95afbd4b1982e86f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2bbaaebe52eaca7e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-96e5f3d8b99a9360",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-dda9b9b37b424550",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0d2ee1df11ae2a17",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b7998a5cb40af818",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4bd6af555c8a2957",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8657f1f3e3e3c0c6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-713948eccba675d6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4c7a5f56cd6475c5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cfe524f369e6ed83",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3c60ac7370ec4a48",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7ef847840506114b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-57d1bdccfc65a35d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c07031f39afb2cb4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e63c5d65668b6ffc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-71ada42a94a82c6a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-77223c36075bc0be",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4c1915afac840d6e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f57a54ebd048e176",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bff4ae63e20b9a3d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ee288090f17bec72",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9f9522105eae01ef",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6d01e51f8e31e5ea",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-95411005e189beb1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f350832b78c73992",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7972be42d3cd2827",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1a7d7b45412e4f31",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-77d8bf44b64e0720",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d8e835b2eeedd1b7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2c72ffa7f9421938",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9dc80e6adb43d879",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7d00bd56b4edb7fd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a9bdf07748017d4b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-443f68d0b3d7b177",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a958f3f92e2b610d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9a5f7d647c824862",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e4d3c832a5930b0b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-40942bee4ee19c7d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-72fecf591661fb96",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-78cd609b6a97ce43",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9811b9f1fa7a5858",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9f6cf40dd568dbe9",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0978545902f551a3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-6da4ef11d02946e6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-455174581f71b0d6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-aae23732090aba24",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-be119af2dff5c26f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-987b3a93e580cb38",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-82ab1bcf694dd791",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-431cba2ef169029d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-78151290d8d4fd3d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-801a6dc2fec2effe",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-61c6933193eb28c6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-672afa7928f5190a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-398aa150acc62b48",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8278bf10b8d72fec",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-930f290904311953",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e0f7a997fa1e1002",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a16ba647ceee2f60",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e85a796053199df4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b1d9a399cacb6714",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4a48dda3157ca7f4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5dc9fbac498f5089",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f0047305eb928a3c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4a44922df0580af5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3827b52b97330a8b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2f616c6ef9adb229",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-02b65a7df8d80d7d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f31129bd064d4bfc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-20155f305a8edfcb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fb1f90f8a98be7e5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-babbb17742cd75c3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-45dc15cbd91d8408",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-66204730e58a288a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-716bca447ea8c9ed",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-68143d7969799a82",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5c185c8d02af03be",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-522bfe4e544e7b45",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0a2d96789b9c9e1c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-febb53738accae80",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ddce60e81c46393f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9f1dff629a02f2cb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-aebd2d40ec88edba",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8670034d3fb1c628",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a4f844f9d1e57fdd",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-cbb4c43560f8c7c0",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-805d445d76a555d3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4394549f70ee5bb8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ff0ba34616eb5eba",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-844bfe3261199cd6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-0739b97848b45ba5",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a147e71130fec0a3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5a7e19d2dfb4cc74",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1974bc028935c106",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5319256ab010b71e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-567c585b21cefe76",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a0714e90463575ad",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8e6d3fb26959b3cf",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4a62e4b6f06db413",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-062a839b3ca3a319",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-2ad19000b1d8da32",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d55cabaa02d21b0d",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7170f88f2fb00d66",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a87544c832015e34",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-4516820554317649",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bec126cd64ce1d45",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-40c57dd7a20815cf",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c048bb241b6e87cc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b0e392ac7b348e51",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7161e933cae2fd85",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-231d3b70200ad2c6",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1c80af4232743dd3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-721dc6ccbbdd8713",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-064e59167253e83c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a6e8054b1351cfd1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8427330a3563a28a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-373982e3fcadf863",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-a5183824a1de23e1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f8b44b01f435ec0b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ec3ffa330f86b1ed",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-21fa9059cb4c4ed4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-aafea21e0f3ab0bb",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-acb7df428a52cdff",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bd7f0c0bcfa2483a",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3f7afc4bb4dfa4e3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f66a2ec85b59b4e2",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-d6ca399c65bce9d1",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-753d046e2fcc75dc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-bb377312593260db",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-107e89c251a00a47",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-07d2d376679ae7c8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-faee51f7b17ff033",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-100ab30e23bd5784",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ac0442a0f689ee07",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-f9dd76dcaf43740e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e8454d41b9b49cad",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-adcd21f0ccf05655",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fa8fe8cf904e146f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7176fba492b8c59c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7efdaa23199df905",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-9d9b316383f103fc",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-42ea23db27d4317f",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-db9ee565962da660",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-8046ac23767f48c7",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-5715a8e2a3d27879",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-e2a45310c883f407",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-1d703576f67dc8e3",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-531c0c97f236d51c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-af92292566db9c19",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-df557ea0b73ba204",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-c80252b5196ccf92",
+          "status": "passed",
+          "expected": "pass"
+        }
+      ],
       "fixture_cases": [
         {
           "id": "fixture-ads.example.test",
@@ -139,6 +2081,21 @@
           "expected": "pass"
         },
         {
+          "id": "fixture-child.allow.tracker.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-safe.tracker.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.safe.tracker.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
           "id": "fixture-content.video.example.test",
           "status": "passed",
           "expected": "pass"
@@ -149,6 +2106,21 @@
           "expected": "block"
         },
         {
+          "id": "fixture-allow-fixture-keyword.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.allow-fixture-keyword.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-fixture-keyword.safe.tracker.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
           "id": "fixture-a-fixture-keyword.example.test",
           "status": "passed",
           "expected": "block"
@@ -157,6 +2129,21 @@
           "id": "fixture-ip",
           "status": "passed",
           "expected": "block"
+        },
+        {
+          "id": "fixture-ip-allow-ip.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-ip-child.allow-ip.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-ip-child.allow-network.example.test",
+          "status": "passed",
+          "expected": "pass"
         }
       ],
       "status": "passed"
@@ -435,6 +2422,7 @@
           "expected": "block"
         }
       ],
+      "allowlist_cases": [],
       "fixture_cases": [
         {
           "id": "fixture-ads.example.test",
@@ -521,6 +2509,48 @@
           "expected": "pass"
         },
         {
+          "id": "fixture-child.allow.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.allow.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-safe.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-safe.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.safe.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.safe.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
           "id": "fixture-content.video.example.test",
           "query_type": "A",
           "status": "passed",
@@ -547,6 +2577,48 @@
           "status": "passed",
           "reason": "FilteredBlackList",
           "expected": "block"
+        },
+        {
+          "id": "fixture-allow-fixture-keyword.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-allow-fixture-keyword.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.allow-fixture-keyword.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.allow-fixture-keyword.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-fixture-keyword.safe.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-fixture-keyword.safe.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
         },
         {
           "id": "fixture-a-fixture-keyword.example.test",
@@ -568,8 +2640,8 @@
   },
   "validation_config_sha256": "49bf8d0bb92958f50f14de9b8439106bb5a68bb6c6c66731df904e0daa5842f3",
   "output_sha256": {
-    "clash.yaml": "1adb645b46168a4ae7228a6299bc3116d07f12f1527a6ecd9fc9b22a15b97c1d",
-    "clash-allow.yaml": "f7806f4cf74bdcdb527898ec6b0e90fa7411ff6206b41c94810725604160c216",
+    "clash.yaml": "664b2f94894ca7f4d629db09595dd506de4b5f5d5ead05581915aa69e4007bf8",
+    "clash-allow.yaml": "56386917dba682e9dd4b1ec61efaa774b156121c88b288dbe47d21a1b4f24b47",
     "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
   }
 }

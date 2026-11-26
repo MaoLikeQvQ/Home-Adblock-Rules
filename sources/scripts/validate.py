@@ -31,7 +31,7 @@ def file_hashes(directory, exclude=()):
 
 def read_rules(directory):
     blocked, allowed = parse_adguard((directory / 'adguard.txt').read_text())
-    return {'clash_block': parse_classical((directory / 'clash.yaml').read_text()),
+    return {'clash_block': parse_classical((directory / 'clash.yaml').read_text(), compiled=True),
             'clash_allow': parse_classical((directory / 'clash-allow.yaml').read_text()),
             'adguard_block': blocked, 'adguard_allow': allowed}
 
@@ -69,9 +69,9 @@ def validate(candidate, baseline, config_path):
                 findings.append({'id': 'allow-change-' + target, 'reason': 'Allow scope changed'})
             if target.endswith('block'):
                 for rule in added:
-                    if rule.startswith(('DOMAIN-KEYWORD,', 'IP-CIDR', '*')):
+                    if rule.startswith(('DOMAIN-KEYWORD,', 'IP-CIDR', '*', 'AND,')):
                         findings.append({'id': 'broad-' + digest((target + rule).encode())[:16],
-                                         'target': target, 'rule': rule, 'reason': 'New pattern or IP rule'})
+                                         'target': target, 'rule': rule, 'reason': 'New pattern, IP or compiled exception rule'})
                     target_format = 'clash' if target.startswith('clash') else 'adguard'
                     shape = rule_spec(target_format, rule)
                     if shape and shape['scope'] == 'suffix':

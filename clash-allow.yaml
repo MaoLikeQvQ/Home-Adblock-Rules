@@ -5,6 +5,7 @@
 # Upstream: 217heidai/adblockfilters (GPLv3)
 # Upstream: abclq/home-dns-adblock (MIT)
 # See sources/ for original inputs, notices and licenses.
+# Audit and legacy-client compatibility; not required by the compiled provider.
 payload:
   - 'DOMAIN-SUFFIX,5471782.fls.doubleclick.net'
   - 'DOMAIN-SUFFIX,79423.analytics.edgekey.net'

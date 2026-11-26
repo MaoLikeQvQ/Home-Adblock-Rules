@@ -60,7 +60,7 @@ DOMAIN,ad-cdn.qingting.fm
 - SHA-256：`d9505657be49bb3f24fc96991a8796a4c1815d41b99630bd0d4b400f870d8b76`
 - Git Blob SHA-1：`bab4a38cd381d7e70244346334ba56c7bd620f1a`
 - 解析结果：拦截 252252 条，放行 194 条。
-- clash：按来源顺序新增 252243 条；与之前来源重复 9 条；最终保留 252219 条；该来源独有 251620 条。
+- clash：按来源顺序新增 252243 条；与之前来源重复 9 条；最终保留 252218 条；该来源独有 251619 条。
 
 独有规则示例：
 
@@ -98,9 +98,9 @@ DOMAIN-SUFFIX,0.nextyourcontent.com
 ## abclq Home DNS Adblock（精确规则 + 上游全量）
 
 - 项目：https://github.com/abclq/home-dns-adblock
-- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/462c1effa4fa67594a35a76c61ab215c1affbd83/dist/adguard-dns-full.txt
+- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/d8e8f5b47e89b1ec3b3923917159861cc3173678/dist/adguard-dns-full.txt
 - 原始快照：[sources/home-dns.txt](sources/home-dns.txt)
-- 上游提交：`462c1effa4fa67594a35a76c61ab215c1affbd83`
+- 上游提交：`d8e8f5b47e89b1ec3b3923917159861cc3173678`
 - SHA-256：`2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3`
 - Git Blob SHA-1：`98bde2862bf79d75b69e3a52b302b923940f9363`
 - 解析结果：拦截 1019 条，放行 0 条。

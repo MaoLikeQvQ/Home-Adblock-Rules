@@ -39,7 +39,7 @@ def classical_rule(line: str) -> str:
     raise ValueError(f"unsupported classical rule: {line}")
 
 
-def parse_classical(text: str) -> set[str]:
+def parse_classical(text: str, *, compiled: bool = False) -> set[str]:
     rules = set()
     payload = False
     for number, raw in enumerate(text.splitlines(), 1):
@@ -59,7 +59,11 @@ def parse_classical(text: str) -> set[str]:
         item = line[2:].strip()
         if len(item) >= 2 and item[0] == item[-1] and item[0] in "\"'":
             item = item[1:-1]
-        rules.add(classical_rule(item))
+        if compiled:
+            from .allowlist import parse_compiled_rule
+            rules.add(parse_compiled_rule(item))
+        else:
+            rules.add(classical_rule(item))
     if not payload:
         raise ValueError("missing payload")
     return rules

@@ -1,12 +1,5 @@
 # 合并进现有 Mihomo 配置；这是规则片段，不是代理节点订阅。
 rule-providers:
-  home-adblock-allow:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml
-    path: ./ruleset/home-adblock-allow.yaml
-    interval: 28800
   home-adblock:
     type: http
     behavior: classical
@@ -15,6 +8,5 @@ rule-providers:
     path: ./ruleset/home-adblock.yaml
     interval: 28800
 rules:
-  # 仅拦截命中黑名单且不在白名单的连接；白名单继续走现有分流。
-  # 放在其他广泛匹配规则和 MATCH 前。需要支持逻辑规则的 Mihomo。
-  - AND,((RULE-SET,home-adblock),(NOT,((RULE-SET,home-adblock-allow)))),REJECT
+  # 白名单已在构建时处理；放在广泛匹配规则和 MATCH 前。
+  - RULE-SET,home-adblock,REJECT

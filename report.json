@@ -1,5 +1,6 @@
 {
   "schema_version": 2,
+  "mihomo_allow_mode": "compiled",
   "protection": {
     "policies": [
       {
@@ -45,7 +46,7 @@
         "reviewed_on": "2026-11-26"
       }
     ],
-    "decisions": 28
+    "decisions": 102
   },
   "repository": "MaoLikeQvQ/Home-Adblock-Rules",
   "sources": [
@@ -148,8 +149,8 @@
           "input_block_rules": 252252,
           "added_after_previous_sources": 252243,
           "duplicates_with_previous_sources": 9,
-          "retained_in_output": 252219,
-          "exclusive_block_rules": 251620,
+          "retained_in_output": 252218,
+          "exclusive_block_rules": 251619,
           "exclusive_examples": [
             "DOMAIN-SUFFIX,0--d.com",
             "DOMAIN-SUFFIX,0-0.fr",
@@ -196,8 +197,8 @@
         "adguard"
       ],
       "min_rules": 500,
-      "upstream_commit": "462c1effa4fa67594a35a76c61ab215c1affbd83",
-      "resolved_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/462c1effa4fa67594a35a76c61ab215c1affbd83/dist/adguard-dns-full.txt",
+      "upstream_commit": "d8e8f5b47e89b1ec3b3923917159861cc3173678",
+      "resolved_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/d8e8f5b47e89b1ec3b3923917159861cc3173678/dist/adguard-dns-full.txt",
       "sha256": "2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3",
       "git_blob_sha1": "98bde2862bf79d75b69e3a52b302b923940f9363",
       "snapshot": "sources/home-dns.txt",
@@ -246,7 +247,7 @@
     }
   ],
   "counts": {
-    "clash_block": 253624,
+    "clash_block": 253623,
     "clash_allow": 194,
     "adguard_block": 252644,
     "adguard_allow": 194
@@ -254,8 +255,8 @@
   "local_clash_only_rules": [],
   "deduplication": "identical normalized rules; matching scope preserved",
   "output_sha256": {
-    "clash.yaml": "1adb645b46168a4ae7228a6299bc3116d07f12f1527a6ecd9fc9b22a15b97c1d",
-    "clash-allow.yaml": "f7806f4cf74bdcdb527898ec6b0e90fa7411ff6206b41c94810725604160c216",
+    "clash.yaml": "664b2f94894ca7f4d629db09595dd506de4b5f5d5ead05581915aa69e4007bf8",
+    "clash-allow.yaml": "56386917dba682e9dd4b1ec61efaa774b156121c88b288dbe47d21a1b4f24b47",
     "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
   }
 }

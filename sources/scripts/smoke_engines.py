@@ -28,6 +28,7 @@ if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.validate import digest
 from scripts.rules.protection import witness_scenarios
+from scripts.rules.allowlist import allow_scenarios
 
 ROOT = Path(__file__).resolve().parent.parent
 OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
@@ -171,17 +172,21 @@ def dns_query(port, host, kind):
 
 
 def providers_ready(providers, counts):
-    if not isinstance(providers, dict) or not all(
-            isinstance(providers.get(name), dict) for name in ('home-adblock', 'home-adblock-allow')):
+    if not isinstance(providers, dict) or not isinstance(providers.get('home-adblock'), dict):
         return False
-    return (providers['home-adblock'].get('ruleCount') == counts['clash_block'] and
-            providers['home-adblock-allow'].get('ruleCount') == counts['clash_allow'])
+    return providers['home-adblock'].get('ruleCount') == counts['clash_block']
 
 
 def check_mihomo(binary, candidate, cases, directory, http_port):
     api, proxy = free_port(), free_port()
     base = f'http://127.0.0.1:{http_port}'
-    hosts = ''.join('  ' + case['host'] + ': ' + case.get('destination_ip', '127.0.0.1') + chr(10) for case in cases)
+    host_addresses = {}
+    for case in cases:
+        address = case.get('destination_ip', '127.0.0.1')
+        if case['host'] in host_addresses and host_addresses[case['host']] != address:
+            raise ValueError('conflicting fixture destination: ' + case['host'])
+        host_addresses[case['host']] = address
+    hosts = ''.join('  ' + host + ': ' + address + chr(10) for host, address in sorted(host_addresses.items()))
     config = f'''mixed-port: {proxy}
 allow-lan: false
 mode: rule
@@ -195,14 +200,8 @@ hosts:
     url: {base}/clash.yaml
     path: ./block.yaml
     interval: 28800
-  home-adblock-allow:
-    type: http
-    behavior: classical
-    url: {base}/clash-allow.yaml
-    path: ./allow.yaml
-    interval: 28800
 rules:
-  - AND,((RULE-SET,home-adblock),(NOT,((RULE-SET,home-adblock-allow)))),REJECT
+  - RULE-SET,home-adblock,REJECT
   - MATCH,DIRECT
 '''
     (directory / 'config.yaml').write_text(config)
@@ -221,12 +220,13 @@ rules:
                     response.read()
             except OSError:
                 pass
-            expected = 'using REJECT' if case['expected'] == 'block' else 'match Match using DIRECT'
+            expected = ('using REJECT',) if case['expected'] == 'block' else (
+                'match Match using DIRECT', 'dial DIRECT (match Match/)')
             deadline = time.monotonic() + 3
             matched = None
             while time.monotonic() < deadline:
                 for line in (directory / 'runtime.log').read_text().splitlines():
-                    if f"--> {case['host']}:{http_port}" in line and expected in line:
+                    if f"--> {case['host']}:{http_port}" in line and any(item in line for item in expected):
                         matched = line
                 if matched:
                     break
@@ -308,32 +308,45 @@ def prepare_fixture(directory):
     from scripts.build import yaml_payload
     from scripts.rules.protection import apply_protection, RuleIndex
     from scripts.rules.parsers import classical_to_adguard
+    from scripts.rules.allowlist import compile_allowlist
     blocked = {'DOMAIN,ads.example.test', 'DOMAIN-SUFFIX,tracker.example.test',
                'DOMAIN-SUFFIX,content.video.example.test', 'DOMAIN-SUFFIX,ads.video.example.test',
                'DOMAIN-KEYWORD,fixture-keyword', 'IP-CIDR,127.0.0.2/32,no-resolve'}
-    allowed = {'DOMAIN,allow.tracker.example.test'}
+    allowed = {'DOMAIN,allow.tracker.example.test', 'DOMAIN-SUFFIX,safe.tracker.example.test',
+               'DOMAIN,allow-fixture-keyword.example.test', 'DOMAIN,allow-ip.example.test',
+               'DOMAIN-SUFFIX,allow-network.example.test'}
     policy = {'id': 'fixture-video', 'enabled': True, 'domain': 'video.example.test', 'scope': 'suffix',
               'reason': 'controlled fixture', 'permitted_block_rules': [{'domain': 'ads.video.example.test', 'scope': 'suffix'}]}
     blocked, _ = apply_protection('clash', blocked, allowed, [policy], RuleIndex())
-    (directory / 'clash.yaml').write_text(yaml_payload(blocked, '# fixture' + chr(10)))
+    compiled, _ = compile_allowlist(blocked, allowed)
+    (directory / 'clash.yaml').write_text(yaml_payload(compiled, '# fixture' + chr(10)))
     (directory / 'clash-allow.yaml').write_text(yaml_payload(allowed, '# fixture' + chr(10)))
     dns_block, _ = classical_to_adguard(blocked)
     dns_block.add('*fixture-keyword*')
     dns_allow, _ = classical_to_adguard(allowed)
     (directory / 'adguard.txt').write_text(chr(10).join(sorted(dns_block) + ['@@' + x for x in sorted(dns_allow)]) + chr(10))
-    counts = {'clash_block': len(blocked), 'clash_allow': len(allowed),
+    counts = {'clash_block': len(compiled), 'clash_allow': len(allowed),
               'adguard_block': len(dns_block), 'adguard_allow': len(dns_allow)}
     (directory / 'report.json').write_text(json.dumps({'counts': counts}))
     cases = []
     for host, expected in [('ads.example.test', 'block'), ('child.ads.example.test', 'pass'),
                            ('notads.example.test', 'pass'), ('tracker.example.test', 'block'),
                            ('child.tracker.example.test', 'block'), ('allow.tracker.example.test', 'pass'),
+                           ('child.allow.tracker.example.test', 'block'),
+                           ('safe.tracker.example.test', 'pass'), ('child.safe.tracker.example.test', 'pass'),
                            ('content.video.example.test', 'pass'), ('ads.video.example.test', 'block'),
+                           ('allow-fixture-keyword.example.test', 'pass'),
+                           ('child.allow-fixture-keyword.example.test', 'block'),
+                           ('fixture-keyword.safe.tracker.example.test', 'pass'),
                            ('a-fixture-keyword.example.test', 'block')]:
         cases.append({'id': 'fixture-' + host, 'host': host, 'expected': expected,
                       'targets': ['clash', 'adguard'], 'query_types': ['A', 'AAAA']})
     cases.append({'id': 'fixture-ip', 'host': '127.0.0.2', 'destination_ip': '127.0.0.2',
                   'expected': 'block', 'targets': ['clash'], 'query_types': ['A']})
+    for host, expected in [('allow-ip.example.test', 'pass'), ('child.allow-ip.example.test', 'block'),
+                           ('child.allow-network.example.test', 'pass')]:
+        cases.append({'id': 'fixture-ip-' + host, 'host': host, 'destination_ip': '127.0.0.2',
+                      'expected': expected, 'targets': ['clash'], 'query_types': ['A']})
     return cases
 
 
@@ -388,18 +401,21 @@ def run(candidate, config, scenarios, cache):
                 for engine, target in [('mihomo', 'clash'), ('adguard', 'adguard')]:
                     selected = [case for case in cases if target in case['targets']]
                     witnesses = witness_scenarios(candidate, target)
+                    allow_cases = allow_scenarios(candidate) if engine == 'mihomo' else []
                     if not selected:
                         raise ValueError('missing engine scenarios')
                     binary, binary_hash = install_engine(specs[engine], cache, engine)
                     directory = work / engine
                     directory.mkdir()
                     if engine == 'mihomo':
-                        checks = check_mihomo(binary, candidate, selected + witnesses, directory, http_port)
+                        checks = check_mihomo(binary, candidate, selected + witnesses + allow_cases, directory, http_port)
                     else:
                         checks = check_adguard(binary, candidate, selected + witnesses, directory, http_port, dns_port)
                     witness_ids = {case['id'] for case in witnesses}
+                    allow_ids = {case['id'] for case in allow_cases}
+                    allow_checks = [case for case in checks if case['id'] in allow_ids]
                     witness_checks = [case for case in checks if case['id'] in witness_ids]
-                    checks = [case for case in checks if case['id'] not in witness_ids]
+                    checks = [case for case in checks if case['id'] not in witness_ids | allow_ids]
                     fixture_run = work / (engine + '-fixture')
                     fixture_run.mkdir()
                     selected_fixture = [c for c in fixture_cases if target in c['targets']]
@@ -411,6 +427,7 @@ def run(candidate, config, scenarios, cache):
                     result['engines'][engine] = {'version': specs[engine]['version'], 'archive_sha256': specs[engine]['sha256'],
                                                  'binary_sha256': binary_hash, 'cases': checks,
                                                  'protection_witness_cases': witness_checks,
+                                                 'allowlist_cases': allow_checks,
                                                  'fixture_cases': fixture_results, 'status': 'passed'}
     return result
 
