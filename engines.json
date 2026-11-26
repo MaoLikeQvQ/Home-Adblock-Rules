@@ -1,0 +1,575 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "platform": "linux-amd64",
+  "scenarios_sha256": "9d2855a8ca850242e4e938ee9c9dc4b7914dafe1b5330249988dfbe0c6ba0a02",
+  "engines": {
+    "mihomo": {
+      "version": "v1.19.34",
+      "archive_sha256": "223fab877e5795ce780ba39902e5f0b1113c1256ae244a7160f1165e017e9ccc",
+      "binary_sha256": "0a68807c7c93963bb66d07717fe0f3ac3945b422b525f8a1e19438d278d7ae11",
+      "cases": [
+        {
+          "id": "ad-request",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "upstream-allow",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-gecko",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-risk",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-xiaomi",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "novel-content",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "novel-ad",
+          "status": "passed",
+          "expected": "block"
+        }
+      ],
+      "protection_witness_cases": [
+        {
+          "id": "protection-witness-64569b516b0625b4",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-8d66202f86a908fb",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-02e48cd480413dac",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-b58e8e4c48d40f25",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-752a8d1746deeee6",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-523045455540aec4",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-bf9ea1eb74d2d439",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-e2d06987324095b0",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-c05021be64ffe569",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-62e256887e256631",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-b4aa61a385d991de",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-558e322156ef95a7",
+          "status": "passed",
+          "expected": "block"
+        }
+      ],
+      "fixture_cases": [
+        {
+          "id": "fixture-ads.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.ads.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-notads.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-tracker.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.tracker.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-allow.tracker.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-content.video.example.test",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-ads.video.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-a-fixture-keyword.example.test",
+          "status": "passed",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-ip",
+          "status": "passed",
+          "expected": "block"
+        }
+      ],
+      "status": "passed"
+    },
+    "adguard": {
+      "version": "v1.0.0",
+      "archive_sha256": "19e023d98eb42eb1cdbfd6e4b6ebc937dade59e969506c62eafb3a3d6d2c1e4f",
+      "binary_sha256": "d088d0ab365173ed70a6179703a9a7aae93336652bbc79c052aef70b1ed0771a",
+      "cases": [
+        {
+          "id": "ad-request",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "ad-request",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "upstream-allow",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "upstream-allow",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-gecko",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-gecko",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-risk",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-risk",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-xiaomi",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "protected-xiaomi",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "novel-content",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "novel-content",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "novel-ad",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "novel-ad",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        }
+      ],
+      "protection_witness_cases": [
+        {
+          "id": "protection-witness-d2e370adccee5401",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-d2e370adccee5401",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-1e583c69b44a64b6",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-1e583c69b44a64b6",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-52f74f9a59d064bf",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-52f74f9a59d064bf",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-811cd9cf68f9ab65",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-811cd9cf68f9ab65",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-830877a296165439",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-830877a296165439",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-d1e3d21d0deb92ca",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-d1e3d21d0deb92ca",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-e2f584cf0e0dfb44",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-e2f584cf0e0dfb44",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-3ed4c285d8fbec3e",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-3ed4c285d8fbec3e",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-c738555963da587a",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-c738555963da587a",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-2eae9720adbe3347",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-2eae9720adbe3347",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-e93386ae816218ed",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-e93386ae816218ed",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-9779ee31ff68328f",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "protection-witness-9779ee31ff68328f",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        }
+      ],
+      "fixture_cases": [
+        {
+          "id": "fixture-ads.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-ads.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.ads.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-child.ads.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-notads.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-notads.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-child.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-allow.tracker.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-allow.tracker.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredWhiteList",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-content.video.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-content.video.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "NotFilteredNotFound",
+          "expected": "pass"
+        },
+        {
+          "id": "fixture-ads.video.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-ads.video.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-a-fixture-keyword.example.test",
+          "query_type": "A",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        },
+        {
+          "id": "fixture-a-fixture-keyword.example.test",
+          "query_type": "AAAA",
+          "status": "passed",
+          "reason": "FilteredBlackList",
+          "expected": "block"
+        }
+      ],
+      "status": "passed"
+    }
+  },
+  "validation_config_sha256": "49bf8d0bb92958f50f14de9b8439106bb5a68bb6c6c66731df904e0daa5842f3",
+  "output_sha256": {
+    "clash.yaml": "1adb645b46168a4ae7228a6299bc3116d07f12f1527a6ecd9fc9b22a15b97c1d",
+    "clash-allow.yaml": "f7806f4cf74bdcdb527898ec6b0e90fa7411ff6206b41c94810725604160c216",
+    "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
+  }
+}

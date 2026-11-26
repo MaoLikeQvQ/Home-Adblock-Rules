@@ -1,0 +1,261 @@
+{
+  "schema_version": 2,
+  "protection": {
+    "policies": [
+      {
+        "id": "gecko-service",
+        "enabled": true,
+        "domain": "gecko.snssdk.com",
+        "scope": "suffix",
+        "permitted_block_rules": [],
+        "reason": "采用上游对业务资源下发域的保护",
+        "evidence_level": "upstream-reference",
+        "evidence": [
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+        ],
+        "reviewed_on": "2026-11-26"
+      },
+      {
+        "id": "risk-control",
+        "enabled": true,
+        "domain": "is.snssdk.com",
+        "scope": "suffix",
+        "permitted_block_rules": [],
+        "reason": "采用上游对风控业务域的保护",
+        "evidence_level": "upstream-reference",
+        "evidence": [
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+        ],
+        "reviewed_on": "2026-11-26"
+      },
+      {
+        "id": "xiaomi-service",
+        "enabled": true,
+        "domain": "tz.sec.xiaomi.com",
+        "scope": "suffix",
+        "permitted_block_rules": [],
+        "reason": "采用上游对小米系统服务的保护",
+        "evidence_level": "upstream-reference",
+        "evidence": [
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+          "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+        ],
+        "reviewed_on": "2026-11-26"
+      }
+    ],
+    "decisions": 28
+  },
+  "repository": "MaoLikeQvQ/Home-Adblock-Rules",
+  "sources": [
+    {
+      "id": "awa-clash",
+      "name": "AWAvenue 秋风广告规则（Clash Classical）",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml",
+      "homepage": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule",
+      "license": "GPL-3.0",
+      "format": "classical",
+      "targets": [
+        "clash"
+      ],
+      "min_rules": 500,
+      "upstream_commit": "8965815bf3978bdaccdd7a18ec694db67e14d5c1",
+      "resolved_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/8965815bf3978bdaccdd7a18ec694db67e14d5c1/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml",
+      "sha256": "58a85bfdfccb48f7038bb520df4f5c67ffa44a79c0e14aa962777847a3614845",
+      "git_blob_sha1": "10dc8e692d84abea01320632a5bc2a992d689007",
+      "snapshot": "sources/awa-clash.txt",
+      "block_rules": 998,
+      "allow_rules": 0,
+      "contribution": {
+        "clash": {
+          "input_block_rules": 998,
+          "added_after_previous_sources": 998,
+          "duplicates_with_previous_sources": 0,
+          "retained_in_output": 997,
+          "exclusive_block_rules": 985,
+          "exclusive_examples": [
+            "DOMAIN,1500020991.vodplayer.wxamedia.com",
+            "DOMAIN,1500022744.vodplayer.wxamedia.com",
+            "DOMAIN,1500026601.vodplayer.wxamedia.com",
+            "DOMAIN,8le8le.com",
+            "DOMAIN,8rn1y79f02-1.algolianet.com",
+            "DOMAIN,a0.app.xiaomi.com",
+            "DOMAIN,aaid.umeng.com",
+            "DOMAIN,abtest-ch.snssdk.com",
+            "DOMAIN,ad-api.4pyun.com",
+            "DOMAIN,ad-cdn.qingting.fm"
+          ]
+        }
+      }
+    },
+    {
+      "id": "awa-dns",
+      "name": "AWAvenue 秋风广告规则（AdGuard DNS）",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt",
+      "homepage": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule",
+      "license": "GPL-3.0",
+      "format": "adguard",
+      "targets": [
+        "adguard"
+      ],
+      "min_rules": 500,
+      "upstream_commit": "8965815bf3978bdaccdd7a18ec694db67e14d5c1",
+      "resolved_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/8965815bf3978bdaccdd7a18ec694db67e14d5c1/AWAvenue-Ads-Rule.txt",
+      "sha256": "9c7204be5180e33ed97d2f7b8dc9fc1b61e6aabdaafa149ed9165636294f7f7b",
+      "git_blob_sha1": "f1b2b2feff996920c151119252eb1197e550e248",
+      "snapshot": "sources/awa-dns.txt",
+      "block_rules": 982,
+      "allow_rules": 0,
+      "contribution": {
+        "adguard": {
+          "input_block_rules": 982,
+          "added_after_previous_sources": 982,
+          "duplicates_with_previous_sources": 0,
+          "retained_in_output": 981,
+          "exclusive_block_rules": 5,
+          "exclusive_examples": [
+            "*-ad.sm.cn*",
+            "*-ad.video.yximgs.com*",
+            "*-ad.wtzw.com*",
+            "*-be-pack-sign.pglstatp-toutiao.com*",
+            "||proxy.advp.apple.com^"
+          ]
+        }
+      }
+    },
+    {
+      "id": "heidai-dns",
+      "name": "217heidai AdBlock DNS Filters",
+      "url": "https://raw.githubusercontent.com/217heidai/adblockfilters/dist/adblockdns.txt",
+      "homepage": "https://github.com/217heidai/adblockfilters",
+      "license": "GPL-3.0",
+      "format": "adguard",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "min_rules": 10000,
+      "upstream_commit": "08c72d35e0b25c259d83aac5e55eb38bea2f0d3d",
+      "resolved_url": "https://raw.githubusercontent.com/217heidai/adblockfilters/08c72d35e0b25c259d83aac5e55eb38bea2f0d3d/adblockdns.txt",
+      "sha256": "d9505657be49bb3f24fc96991a8796a4c1815d41b99630bd0d4b400f870d8b76",
+      "git_blob_sha1": "bab4a38cd381d7e70244346334ba56c7bd620f1a",
+      "snapshot": "sources/heidai-dns.txt",
+      "block_rules": 252252,
+      "allow_rules": 194,
+      "contribution": {
+        "clash": {
+          "input_block_rules": 252252,
+          "added_after_previous_sources": 252243,
+          "duplicates_with_previous_sources": 9,
+          "retained_in_output": 252219,
+          "exclusive_block_rules": 251620,
+          "exclusive_examples": [
+            "DOMAIN-SUFFIX,0--d.com",
+            "DOMAIN-SUFFIX,0-0.fr",
+            "DOMAIN-SUFFIX,0-02.net",
+            "DOMAIN-SUFFIX,0-btc.com",
+            "DOMAIN-SUFFIX,0-energy.com",
+            "DOMAIN-SUFFIX,0-tox.com",
+            "DOMAIN-SUFFIX,0.avmarket.rs",
+            "DOMAIN-SUFFIX,0.myikas.com",
+            "DOMAIN-SUFFIX,0.net.easyjet.com",
+            "DOMAIN-SUFFIX,0.nextyourcontent.com"
+          ]
+        },
+        "adguard": {
+          "input_block_rules": 252252,
+          "added_after_previous_sources": 251666,
+          "duplicates_with_previous_sources": 586,
+          "retained_in_output": 252219,
+          "exclusive_block_rules": 251604,
+          "exclusive_examples": [
+            "||0--d.com^",
+            "||0-0.fr^",
+            "||0-02.net^",
+            "||0-btc.com^",
+            "||0-energy.com^",
+            "||0-tox.com^",
+            "||0.avmarket.rs^",
+            "||0.myikas.com^",
+            "||0.net.easyjet.com^",
+            "||0.nextyourcontent.com^"
+          ]
+        }
+      }
+    },
+    {
+      "id": "home-dns",
+      "name": "abclq Home DNS Adblock（精确规则 + 上游全量）",
+      "url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/main/dist/adguard-dns-full.txt",
+      "homepage": "https://github.com/abclq/home-dns-adblock",
+      "license": "MIT",
+      "format": "adguard",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "min_rules": 500,
+      "upstream_commit": "462c1effa4fa67594a35a76c61ab215c1affbd83",
+      "resolved_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/462c1effa4fa67594a35a76c61ab215c1affbd83/dist/adguard-dns-full.txt",
+      "sha256": "2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3",
+      "git_blob_sha1": "98bde2862bf79d75b69e3a52b302b923940f9363",
+      "snapshot": "sources/home-dns.txt",
+      "block_rules": 1019,
+      "allow_rules": 0,
+      "contribution": {
+        "clash": {
+          "input_block_rules": 1019,
+          "added_after_previous_sources": 417,
+          "duplicates_with_previous_sources": 602,
+          "retained_in_output": 1019,
+          "exclusive_block_rules": 417,
+          "exclusive_examples": [
+            "DOMAIN-SUFFIX,a0.app.xiaomi.com",
+            "DOMAIN-SUFFIX,aaid.umeng.com",
+            "DOMAIN-SUFFIX,activity-ag.awemeughun.com",
+            "DOMAIN-SUFFIX,ad.doubleclick.net",
+            "DOMAIN-SUFFIX,ad.hpplay.cn",
+            "DOMAIN-SUFFIX,ad.player.baidu.com",
+            "DOMAIN-SUFFIX,ad.shenshiads.com",
+            "DOMAIN-SUFFIX,ad4.sina.com.cn",
+            "DOMAIN-SUFFIX,adc.hpplay.cn",
+            "DOMAIN-SUFFIX,adcdn.hpplay.cn"
+          ]
+        },
+        "adguard": {
+          "input_block_rules": 1019,
+          "added_after_previous_sources": 29,
+          "duplicates_with_previous_sources": 990,
+          "retained_in_output": 1019,
+          "exclusive_block_rules": 29,
+          "exclusive_examples": [
+            "||activity-ag.awemeughun.com^",
+            "||aeventlog.beacon.qq.com^",
+            "||api.iegadp.qq.com^",
+            "||comfylink.com^",
+            "||dig.bdurl.net^",
+            "||dns.alidns.com^",
+            "||doh.pub^",
+            "||jomoxc.com^",
+            "||l2-toutiao-quic-ipv6-ml.gslb.ksyuncdn.com^",
+            "||log5-applog-lf.fqnovel.com^"
+          ]
+        }
+      }
+    }
+  ],
+  "counts": {
+    "clash_block": 253624,
+    "clash_allow": 194,
+    "adguard_block": 252644,
+    "adguard_allow": 194
+  },
+  "local_clash_only_rules": [],
+  "deduplication": "identical normalized rules; matching scope preserved",
+  "output_sha256": {
+    "clash.yaml": "1adb645b46168a4ae7228a6299bc3116d07f12f1527a6ecd9fc9b22a15b97c1d",
+    "clash-allow.yaml": "f7806f4cf74bdcdb527898ec6b0e90fa7411ff6206b41c94810725604160c216",
+    "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
+  }
+}

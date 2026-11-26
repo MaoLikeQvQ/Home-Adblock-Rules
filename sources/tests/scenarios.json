@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "ad-request",
+      "host": "ad.12306.cn",
+      "expected": "block",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "广告接口"
+    },
+    {
+      "id": "upstream-allow",
+      "host": "app.adjust.com",
+      "expected": "pass",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "原生放行"
+    },
+    {
+      "id": "protected-gecko",
+      "host": "gecko.snssdk.com",
+      "expected": "pass",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "上游业务保护"
+    },
+    {
+      "id": "protected-risk",
+      "host": "is.snssdk.com",
+      "expected": "pass",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "上游风控保护"
+    },
+    {
+      "id": "protected-xiaomi",
+      "host": "tz.sec.xiaomi.com",
+      "expected": "pass",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "上游系统保护"
+    },
+    {
+      "id": "novel-content",
+      "host": "v11-reading-video.qznovelvod.com",
+      "expected": "pass",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "正片样例，需另补设备结果"
+    },
+    {
+      "id": "novel-ad",
+      "host": "v11-reading-ad.qznovelvod.com",
+      "expected": "block",
+      "targets": [
+        "clash",
+        "adguard"
+      ],
+      "required": true,
+      "query_types": [
+        "A",
+        "AAAA"
+      ],
+      "reason": "广告样例，需另补设备结果"
+    }
+  ]
+}

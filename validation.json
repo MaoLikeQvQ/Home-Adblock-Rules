@@ -1,0 +1,705 @@
+{
+  "schema_version": 1,
+  "status": "review-required",
+  "baseline_report_sha256": "3f47bd2b2cfae3bdb8364d6de6e2039cd5ab05ad39bcf2dab3dace41d606457c",
+  "findings": [
+    {
+      "id": "impact-a9185f2d4867f333",
+      "target": "clash",
+      "rule": "DOMAIN-KEYWORD,-ad.sm.cn",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.sm.cn",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.sm.cn.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.sm.cn.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.sm.cn.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 1007,
+          "raw": "  - DOMAIN-KEYWORD,-ad.sm.cn"
+        }
+      ]
+    },
+    {
+      "id": "impact-0082db7e5e882fb3",
+      "target": "clash",
+      "rule": "DOMAIN-KEYWORD,-ad.video.yximgs.com",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.video.yximgs.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.video.yximgs.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.video.yximgs.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.video.yximgs.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 1008,
+          "raw": "  - DOMAIN-KEYWORD,-ad.video.yximgs.com"
+        }
+      ]
+    },
+    {
+      "id": "impact-dbd8efd29647f375",
+      "target": "clash",
+      "rule": "DOMAIN-KEYWORD,-ad.wtzw.com",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.wtzw.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.wtzw.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.wtzw.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.wtzw.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 1009,
+          "raw": "  - DOMAIN-KEYWORD,-ad.wtzw.com"
+        }
+      ]
+    },
+    {
+      "id": "impact-b153447f90355ff4",
+      "target": "clash",
+      "rule": "DOMAIN-KEYWORD,-be-pack-sign.pglstatp-toutiao.com",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-be-pack-sign.pglstatp-toutiao.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 1010,
+          "raw": "  - DOMAIN-KEYWORD,-be-pack-sign.pglstatp-toutiao.com"
+        }
+      ]
+    },
+    {
+      "id": "impact-5d5d95388b56e77a",
+      "target": "clash",
+      "rule": "IP-CIDR,111.20.26.186/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "111.20.26.186/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 13,
+          "raw": "  - IP-CIDR,111.20.26.186/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-d124d4898fd8e189",
+      "target": "clash",
+      "rule": "IP-CIDR,112.84.130.73/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "112.84.130.73/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 14,
+          "raw": "  - IP-CIDR,112.84.130.73/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-dfd3b325acb20d08",
+      "target": "clash",
+      "rule": "IP-CIDR,116.142.251.100/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "116.142.251.100/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 15,
+          "raw": "  - IP-CIDR,116.142.251.100/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-378df5d643363f35",
+      "target": "clash",
+      "rule": "IP-CIDR,116.177.251.215/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "116.177.251.215/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 16,
+          "raw": "  - IP-CIDR,116.177.251.215/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-0ccd30ef7d5ace26",
+      "target": "clash",
+      "rule": "IP-CIDR,120.77.173.114/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "120.77.173.114/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 17,
+          "raw": "  - IP-CIDR,120.77.173.114/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-212ab678a2830d83",
+      "target": "clash",
+      "rule": "IP-CIDR,123.56.23.22/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "123.56.23.22/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 18,
+          "raw": "  - IP-CIDR,123.56.23.22/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-6e875846585264aa",
+      "target": "clash",
+      "rule": "IP-CIDR,14.29.101.160/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "14.29.101.160/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 19,
+          "raw": "  - IP-CIDR,14.29.101.160/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-1b9db71a2b48199a",
+      "target": "clash",
+      "rule": "IP-CIDR,14.29.101.168/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "14.29.101.168/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 20,
+          "raw": "  - IP-CIDR,14.29.101.168/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-5e66fb371ad71cc3",
+      "target": "clash",
+      "rule": "IP-CIDR,14.29.101.169/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "14.29.101.169/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 21,
+          "raw": "  - IP-CIDR,14.29.101.169/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-1a79e533d8631f04",
+      "target": "clash",
+      "rule": "IP-CIDR,182.254.116.116/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "182.254.116.116/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 22,
+          "raw": "  - IP-CIDR,182.254.116.116/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-f56141b995daac45",
+      "target": "clash",
+      "rule": "IP-CIDR,203.205.137.89/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "203.205.137.89/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 23,
+          "raw": "  - IP-CIDR,203.205.137.89/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-a51869ec69d8467a",
+      "target": "clash",
+      "rule": "IP-CIDR,218.77.192.51/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "218.77.192.51/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 24,
+          "raw": "  - IP-CIDR,218.77.192.51/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-06589875c3f1fab0",
+      "target": "clash",
+      "rule": "IP-CIDR,38.190.225.166/32,no-resolve",
+      "reason": "Destination IP can affect protected traffic; domain policy alone cannot prove separation",
+      "check_id": "ip-protection-unknown",
+      "analysis": {
+        "kind": "ip-network",
+        "network": "38.190.225.166/32",
+        "no_resolve": true,
+        "affected_policy_ids": [
+          "gecko-service",
+          "risk-control",
+          "xiaomi-service"
+        ],
+        "required_evidence": "router destination IP and effective Mihomo route",
+        "dns_observation": "not-performed; no live lookup is proof of permanent separation"
+      },
+      "origins": [
+        {
+          "source_id": "awa-clash",
+          "file": "sources/awa-clash.txt",
+          "line": 25,
+          "raw": "  - IP-CIDR,38.190.225.166/32,no-resolve"
+        }
+      ]
+    },
+    {
+      "id": "impact-4ced1257045e303a",
+      "target": "adguard",
+      "rule": "*-ad.sm.cn*",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.sm.cn",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.sm.cn.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.sm.cn.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.sm.cn.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-dns",
+          "file": "sources/awa-dns.txt",
+          "line": 993,
+          "raw": "*-ad.sm.cn*"
+        }
+      ]
+    },
+    {
+      "id": "impact-7499d33337faa518",
+      "target": "adguard",
+      "rule": "*-ad.video.yximgs.com*",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.video.yximgs.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.video.yximgs.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.video.yximgs.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.video.yximgs.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-dns",
+          "file": "sources/awa-dns.txt",
+          "line": 994,
+          "raw": "*-ad.video.yximgs.com*"
+        }
+      ]
+    },
+    {
+      "id": "impact-863c64916b43c713",
+      "target": "adguard",
+      "rule": "*-ad.wtzw.com*",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-ad.wtzw.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-ad.wtzw.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-ad.wtzw.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-ad.wtzw.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-dns",
+          "file": "sources/awa-dns.txt",
+          "line": 995,
+          "raw": "*-ad.wtzw.com*"
+        }
+      ]
+    },
+    {
+      "id": "impact-078083ab522df9cb",
+      "target": "adguard",
+      "rule": "*-be-pack-sign.pglstatp-toutiao.com*",
+      "reason": "Pattern can intersect protected suffixes; synthetic witnesses are not real app evidence",
+      "check_id": "pattern-protection-intersection",
+      "analysis": {
+        "kind": "literal-pattern",
+        "literal": "-be-pack-sign.pglstatp-toutiao.com",
+        "affected": [
+          {
+            "policy_id": "gecko-service",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.gecko.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "risk-control",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.is.snssdk.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          },
+          {
+            "policy_id": "xiaomi-service",
+            "host": "probe-be-pack-sign.pglstatp-toutiao.com.tz.sec.xiaomi.com",
+            "evidence": "synthetic-match-witness",
+            "business_impact": "not-device-verified"
+          }
+        ]
+      },
+      "origins": [
+        {
+          "source_id": "awa-dns",
+          "file": "sources/awa-dns.txt",
+          "line": 996,
+          "raw": "*-be-pack-sign.pglstatp-toutiao.com*"
+        }
+      ]
+    }
+  ],
+  "changes": {
+    "clash_block": {
+      "added": [],
+      "removed": [
+        "DOMAIN,tz.sec.xiaomi.com",
+        "DOMAIN-SUFFIX,gecko.snssdk.com",
+        "DOMAIN-SUFFIX,is.snssdk.com",
+        "DOMAIN-SUFFIX,tz.sec.xiaomi.com"
+      ]
+    },
+    "clash_allow": {
+      "added": [],
+      "removed": []
+    },
+    "adguard_block": {
+      "added": [],
+      "removed": [
+        "||gecko.snssdk.com^",
+        "||is.snssdk.com^",
+        "||tz.sec.xiaomi.com^"
+      ]
+    },
+    "adguard_allow": {
+      "added": [],
+      "removed": []
+    }
+  },
+  "output_sha256": {
+    "clash.yaml": "1adb645b46168a4ae7228a6299bc3116d07f12f1527a6ecd9fc9b22a15b97c1d",
+    "clash-allow.yaml": "f7806f4cf74bdcdb527898ec6b0e90fa7411ff6206b41c94810725604160c216",
+    "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
+  },
+  "config_sha256": "49bf8d0bb92958f50f14de9b8439106bb5a68bb6c6c66731df904e0daa5842f3",
+  "protection_sha256": "a8c740603253e349022a6e32c521d8cd4e8f9aca90c22ca7c68dc7f6134572a3",
+  "device_acceptance": "incomplete"
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "added_ratio": 0.05,
+  "removed_ratio": 0.05,
+  "engines": {
+    "linux-amd64": {
+      "mihomo": {
+        "version": "v1.19.34",
+        "url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.34/mihomo-linux-amd64-v1.19.34.gz",
+        "sha256": "223fab877e5795ce780ba39902e5f0b1113c1256ae244a7160f1165e017e9ccc"
+      },
+      "adguard": {
+        "version": "v1.0.0",
+        "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v1.0.0/AdGuardHome_linux_amd64.tar.gz",
+        "sha256": "19e023d98eb42eb1cdbfd6e4b6ebc937dade59e969506c62eafb3a3d6d2c1e4f"
+      }
+    },
+    "darwin-arm64": {
+      "mihomo": {
+        "version": "v1.19.34",
+        "url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.34/mihomo-darwin-arm64-v1.19.34.gz",
+        "sha256": "1a7a20eca63fbbaec90137717465bfde488d0db2a3a79b8fadebf9b2545b6e4c"
+      },
+      "adguard": {
+        "version": "v1.0.0",
+        "url": "https://github.com/AdguardTeam/AdGuardHome/releases/download/v1.0.0/AdGuardHome_darwin_arm64.zip",
+        "sha256": "0a180a9a0a8e7a57b2a73e252ffcb4fda4a7c668576d0228aae96114689129ed"
+      }
+    }
+  }
+}
