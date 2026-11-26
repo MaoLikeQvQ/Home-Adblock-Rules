@@ -1,56 +1,37 @@
 # Home-Adblock-Rules
 
-合并秋风、217heidai 和 Home DNS 的去广告规则，生成 **Mihomo / Clash Meta** 与 **AdGuard Home / AdGuard DNS** 订阅，保留来源版本、原始文件及内容哈希。使用 Python 标准库和 GitHub Actions，无需自建服务器。
+> **自用声明与免责说明**
+>
+> 本项目为个人自用的去广告规则合集，按现状提供，不承诺持续维护、拦截效果或兼容所有软件。规则可能漏拦、误拦或影响正常服务，请自行判断、备份配置并承担使用风险。维护者在适用法律允许的范围内不对使用本项目造成的损失负责。
+>
+> 本项目不是上游官方订阅，合并规则的来源、版权及许可归原作者所有，使用和再分发须遵守对应许可。
+
+合并秋风、217heidai 和 Home DNS 的规则，生成 Mihomo 与 AdGuard DNS 格式。**按内核选择订阅，同一内核不区分设备型号。**
 
 ## 订阅地址
 
-**Mihomo / Clash Meta 拦截规则：**
-
-https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml
-
-**Mihomo 配套白名单（放行例外，不含拦截规则）：**
-
-https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml
-
-当前 Mihomo 实现需要两份文件配合：拦截命中黑名单且不在白名单中的连接。白名单继续走现有分流。配置方法见 [使用指南](docs/usage.md)。
-
-**AdGuard Home / AdGuard DNS（已含放行例外，只需一个地址）：**
-
-https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt
-
-以上均为 `dist` 稳定通道的规则订阅，不含代理节点。自动构建只更新 `candidate` 候选通道，完成风险审核及设备验收后才更新稳定通道，详见 [维护指南](docs/maintenance.md)。
-
-## 上游
-
-| 项目 | 输入 | 输出 |
+| 内核 / 过滤引擎 | 内容 | 地址 |
 | --- | --- | --- |
-| [AWAvenue 秋风](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | 官方 Clash Classical 和 AdGuard DNS 文件 | 各自原生格式 |
-| [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters) | `dist/adblockdns.txt`，含放行规则 | 两种格式 |
-| [abclq/home-dns-adblock](https://github.com/abclq/home-dns-adblock) | `main/dist/adguard-dns-full.txt` 全量订阅 | 两种格式 |
+| Mihomo / Clash Meta | 拦截规则，Classical YAML | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml |
+| Mihomo / Clash Meta | 配套放行白名单，Classical YAML | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml |
+| AdGuard Home / AdGuard DNS 过滤引擎 | DNS 过滤规则，已含放行例外 | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt |
 
-[秋风订阅网页](https://awavenue.top/Sub.html?tool=clashClassical) 与其仓库属于同一来源。上游互有收录，合并后按匹配语义去重，不把条数相加当作独立覆盖。配置以 `config/sources.json` 为准。
+**Mihomo / Clash Meta：**拦截规则和白名单配套使用，均选择 `behavior: classical`、`format: yaml`。白名单不设为拦截或强制直连，通过 [配置片段](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/mihomo.example.yaml) 中的逻辑规则保留原有分流。
 
-每轮构建固定上游提交，保存原始输入、SHA-256 和 Git Blob SHA-1，可通过生成的 `SOURCES.md`、`report.json` 与 `sources/` 复核。哈希证明文件身份，不证明规则的业务安全性。Home DNS 的服务端保护也不会因订阅合并自动继承，具体策略见 [保护规则](docs/protection.md)。
+**AdGuard：**将 `adguard.txt` 地址添加到自定义 DNS 封锁清单，只需这一条订阅。
 
-## 本地构建
+这些是规则订阅，不含代理节点。未验证其他内核的兼容性。以上 `dist` 为稳定地址；每 8 小时自动构建的新版先进入 `candidate`，审核后再更新稳定版，构建状态见 [GitHub Actions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml)。
 
-需要 Python 3.10+，无需第三方 Python 依赖，在项目根目录执行：
+## 规则来源
 
-```bash
-python3 -m unittest discover -s tests -v
-python3 scripts/build.py --repository MaoLikeQvQ/Home-Adblock-Rules
-```
+- [AWAvenue 秋风](https://github.com/TG-Twilight/AWAvenue-Ads-Rule)：Clash Classical 与 AdGuard DNS 原生文件。[官网订阅页](https://awavenue.top/Sub.html?tool=clashClassical) 属于同一来源。
+- [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters)：`dist` 分支的 `adblockdns.txt`。
+- [abclq/home-dns-adblock](https://github.com/abclq/home-dns-adblock)：`main` 分支的 `dist/adguard-dns-full.txt`。
 
-输出到本地 `dist/`，该目录不提交到源码分支。修改规则、运行内核测试及发布步骤见 [维护指南](docs/maintenance.md)。
+构建固定上游版本、保留放行例外、按原有匹配范围合并去重，并保存来源快照及哈希。完整配置见 `config/sources.json`。
 
-## 文档
+## 项目维护
 
-| 文档 | 内容 |
-| --- | --- |
-| [使用指南](docs/usage.md) | 客户端配置和误拦排查 |
-| [维护指南](docs/maintenance.md) | 构建、验证、候选发布、晋升及回滚 |
-| [开发说明](docs/development.md) | 代码职责、数据流、测试和后续工作 |
-| [保护规则](docs/protection.md) | 策略语义、采纳依据及风险边界 |
-| [设备验收](docs/acceptance/README.md) | Linux 路由器验收步骤和记录格式 |
+[维护说明](docs/maintenance.md) · [开发说明](docs/development.md) · [保护策略](docs/protection.md)
 
-源码使用 [MIT](LICENSE)；合并规则保留上游 GPLv3 要求及 Home DNS 的 MIT 版权声明。完整许可见 [NOTICE.md](NOTICE.md) 和 `licenses/`。
+源码采用 [MIT](LICENSE)；合并规则按 GPL-3.0-only 发布，并保留 Home DNS 的 MIT 版权声明。详见 [NOTICE.md](NOTICE.md) 和 `licenses/`。
