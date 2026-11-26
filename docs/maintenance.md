@@ -1,6 +1,6 @@
 # 构建、验证与发布
 
-本文描述本地新版实现。**新工作流尚未部署，远端仍沿用旧的定时直发机制**；实际切换前检查远端状态。新版部署后，定时任务只更新候选，稳定版由人工验收后晋升。
+定时任务只更新 candidate 候选，稳定版 dist 由人工验收后晋升。源码推送不代表构建成功或稳定规则已更新；运行结果以 [GitHub Actions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml) 和实际发布提交为准。
 
 ## 修改规则
 
