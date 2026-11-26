@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "policies": [
+    {
+      "id": "gecko-service",
+      "enabled": true,
+      "domain": "gecko.snssdk.com",
+      "scope": "suffix",
+      "permitted_block_rules": [],
+      "reason": "采用上游对业务资源下发域的保护",
+      "evidence_level": "upstream-reference",
+      "evidence": [
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+      ],
+      "reviewed_on": "2026-11-26"
+    },
+    {
+      "id": "risk-control",
+      "enabled": true,
+      "domain": "is.snssdk.com",
+      "scope": "suffix",
+      "permitted_block_rules": [],
+      "reason": "采用上游对风控业务域的保护",
+      "evidence_level": "upstream-reference",
+      "evidence": [
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+      ],
+      "reviewed_on": "2026-11-26"
+    },
+    {
+      "id": "xiaomi-service",
+      "enabled": true,
+      "domain": "tz.sec.xiaomi.com",
+      "scope": "suffix",
+      "permitted_block_rules": [],
+      "reason": "采用上游对小米系统服务的保护",
+      "evidence_level": "upstream-reference",
+      "evidence": [
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt",
+        "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md"
+      ],
+      "reviewed_on": "2026-11-26"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
-import ipaddress
+import gzip
 import json
 import os
 from pathlib import Path
@@ -21,125 +21,18 @@ import time
 import urllib.request
 import urllib.parse
 
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.rules.parsers import (
+    domain, classical_rule, parse_classical, parse_adguard,
+    adguard_to_classical, classical_to_adguard, local_rules,
+)
+
+from scripts.rules.protection import RuleIndex, load_policies, apply_protection
+
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 32 * 1024 * 1024
-DOMAIN_LABEL = re.compile(r"[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?\Z")
-
-
-def domain(value: str, allow_ip_literal: bool = False) -> str:
-    value = value.lower().rstrip(".").encode("idna").decode("ascii")
-    labels = value.split(".")
-    if len(value) > 253 or len(labels) < 2 or not all(DOMAIN_LABEL.fullmatch(x) for x in labels):
-        raise ValueError(f"invalid domain: {value!r}")
-    try:
-        ipaddress.ip_address(value)
-    except ValueError:
-        return value
-    if allow_ip_literal:
-        # A DNS-list hostname that looks like an IP stays a hostname mask. It
-        # must not become an IP-CIDR rule with a broader network-layer effect.
-        return value
-    raise ValueError(f"IP address used as domain: {value}")
-
-
-def classical_rule(line: str) -> str:
-    parts = [part.strip() for part in line.split(",")]
-    if len(parts) < 2:
-        raise ValueError(f"invalid classical rule: {line}")
-    kind, value = parts[:2]
-    if kind in {"DOMAIN", "DOMAIN-SUFFIX"} and len(parts) == 2:
-        return f"{kind},{domain(value)}"
-    if kind == "DOMAIN-KEYWORD" and len(parts) == 2 and re.fullmatch(r"[a-zA-Z0-9_.-]+", value):
-        return f"{kind},{value.lower()}"
-    if kind in {"IP-CIDR", "IP-CIDR6"} and (len(parts) == 2 or parts[2:] == ["no-resolve"]):
-        net = ipaddress.ip_network(value, strict=False)
-        if net.version != (6 if kind == "IP-CIDR6" else 4):
-            raise ValueError(f"IP version mismatch: {line}")
-        # Preserve no-resolve exactly as supplied by the source.
-        return f"{kind},{net}" + (",no-resolve" if len(parts) == 3 else "")
-    raise ValueError(f"unsupported classical rule: {line}")
-
-
-def parse_classical(text: str) -> set[str]:
-    rules = set()
-    payload = False
-    for number, raw in enumerate(text.splitlines(), 1):
-        line = raw.strip()
-        if not line or line.startswith("#"):
-            continue
-        if line == "payload:":
-            if payload:
-                raise ValueError("duplicate payload")
-            payload = True
-            continue
-        if not payload or not line.startswith("- "):
-            raise ValueError(f"line {number}: expected a classical payload item")
-        item = line[2:].strip()
-        if len(item) >= 2 and item[0] == item[-1] and item[0] in "\"'":
-            item = item[1:-1]
-        rules.add(classical_rule(item))
-    if not payload:
-        raise ValueError("missing payload")
-    return rules
-
-
-def parse_adguard(text: str) -> tuple[set[str], set[str]]:
-    blocked, allowed = set(), set()
-    for number, raw in enumerate(text.splitlines(), 1):
-        line = raw.strip()
-        if not line or line.startswith(("!", "#")) or line == "[Adblock Plus 2.0]":
-            continue
-        exception = line.startswith("@@")
-        body = line[2:] if exception else line
-        match = re.fullmatch(r"(\|\||\|)([^|^]+)\^", body)
-        if match:
-            prefix, value = match.groups()
-            rule = prefix + domain(value, allow_ip_literal=True) + "^"
-        elif not exception and re.fullmatch(r"\*[a-zA-Z0-9_.-]+\*", body):
-            # Native AWAvenue wildcard patterns are preserved only for AdGuard.
-            rule = body.lower()
-        else:
-            raise ValueError(f"line {number}: unsupported AdGuard syntax: {line}")
-        (allowed if exception else blocked).add(rule)
-    return blocked, allowed
-
-
-def adguard_to_classical(rules: set[str]) -> set[str]:
-    result = set()
-    for rule in rules:
-        if rule.startswith("||"):
-            result.add("DOMAIN-SUFFIX," + rule[2:-1])
-        elif rule.startswith("|"):
-            result.add("DOMAIN," + rule[1:-1])
-        else:
-            raise ValueError(f"cannot convert AdGuard pattern to Clash: {rule}")
-    return result
-
-
-def classical_to_adguard(rules: set[str]) -> tuple[set[str], list[str]]:
-    result, skipped = set(), []
-    for rule in sorted(rules):
-        kind, value, *_ = rule.split(",")
-        if kind == "DOMAIN":
-            result.add(f"|{value}^")
-        elif kind == "DOMAIN-SUFFIX":
-            result.add(f"||{value}^")
-        else:
-            skipped.append(rule)
-    return result, skipped
-
-
-def local_rules(path: Path, allow: bool = False) -> set[str]:
-    result = set()
-    for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        line = raw.split("#", 1)[0].strip()
-        if not line:
-            continue
-        rule = classical_rule(line)
-        if allow and not rule.startswith(("DOMAIN,", "DOMAIN-SUFFIX,")):
-            raise ValueError(f"{path}:{number}: whitelist supports domain rules only")
-        result.add(rule)
-    return result
 
 
 def fetch(url: str) -> bytes:
@@ -250,10 +143,13 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
 
     clash_block, clash_allow, dns_block, dns_allow = set(), set(), set(), set()
     reports = []
+    index = RuleIndex()
+    policies = load_policies(root / 'config/protection.json')
     source_rules = {}
     seen = {"clash": set(), "adguard": set()}
     for source, data in zip(sources, raw_sources):
         text = data.decode("utf-8-sig")
+        index.source(source, text)
         if source["format"] == "classical":
             blocked, allowed = parse_classical(text), set()
         else:
@@ -290,6 +186,8 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
                         "block_rules": len(blocked), "allow_rules": len(allowed),
                         "contribution": contribution})
 
+    index.local(root / 'config/blocklist.txt', 'block')
+    index.local(root / 'config/allowlist.txt', 'allow')
     own_block = local_rules(root / "config/blocklist.txt")
     own_allow = local_rules(root / "config/allowlist.txt", allow=True)
     own_dns_block, omitted = classical_to_adguard(own_block)
@@ -298,6 +196,11 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
     clash_allow.update(own_allow)
     dns_block.update(own_dns_block)
     dns_allow.update(own_dns_allow)
+    clash_block, clash_decisions = apply_protection(
+        'clash', clash_block, clash_allow, policies, index)
+    dns_block, dns_decisions = apply_protection(
+        'adguard', dns_block, dns_allow, policies, index)
+    decisions = clash_decisions + dns_decisions
     # Remove identical conflicts. Parent/child exceptions are expressed by the
     # dedicated allow provider / native AdGuard exceptions, not by broadening rules.
     clash_block.difference_update(clash_allow)
@@ -323,7 +226,8 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
               "# Upstream: 217heidai/adblockfilters (GPLv3)\n"
               "# Upstream: abclq/home-dns-adblock (MIT)\n"
               "# See sources/ for original inputs, notices and licenses.\n")
-    report = {"repository": repository, "sources": reports,
+    report = {"schema_version": 2, "protection": {"policies": policies, "decisions": len(decisions)},
+              "repository": repository, "sources": reports,
               "counts": {"clash_block": len(clash_block), "clash_allow": len(clash_allow),
                          "adguard_block": len(dns_block), "adguard_allow": len(dns_allow)},
               "local_clash_only_rules": omitted,
@@ -381,6 +285,12 @@ rules:
                     audit.extend(["\n独有规则示例：\n", "```text", *summary["exclusive_examples"], "```\n"])
             audit.append("")
         (stage / "SOURCES.md").write_text("\n".join(audit) + "\n", encoding="utf-8")
+        (stage / 'decisions.json').write_text(json.dumps(
+            {'schema_version': 1, 'decisions': decisions}, ensure_ascii=False, indent=2) + chr(10), encoding='utf-8')
+        with (stage / 'rules.jsonl.gz').open('wb') as raw_handle, gzip.GzipFile(
+                filename='', mode='wb', fileobj=raw_handle, mtime=0) as handle:
+            for record in index.export():
+                handle.write((json.dumps(record, ensure_ascii=False, sort_keys=True) + chr(10)).encode('utf-8'))
         (stage / "sources").mkdir()
         for source, data in zip(sources, raw_sources):
             (stage / "sources" / (source["id"] + ".txt")).write_bytes(data)
@@ -388,6 +298,11 @@ rules:
             destination = stage / "sources" / source_file
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(root / source_file, destination)
+        for folder, pattern in [('scripts', '*.py'), ('config', '*.json'), ('tests', '*.json')]:
+            for source_file in sorted((root / folder).rglob(pattern)):
+                destination = stage / 'sources' / source_file.relative_to(root)
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source_file, destination)
         old = Path(temporary) / "previous"
         if output.exists():
             output.rename(old)

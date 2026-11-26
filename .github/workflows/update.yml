@@ -2,7 +2,6 @@ name: Update subscriptions
 
 on:
   schedule:
-    # UTC 00:23 / 08:23 / 16:23，即北京时间 08:23 / 16:23 / 00:23。
     - cron: '23 */8 * * *'
   workflow_dispatch:
   push:
@@ -22,7 +21,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: subscriptions-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
+  group: candidate-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
   cancel-in-progress: false
 
 jobs:
@@ -35,30 +34,52 @@ jobs:
           python-version: '3.12'
       - name: Regression tests
         run: python -m unittest discover -s tests -v
-      - name: Load last published counts
+      - name: Read stable baseline
+        id: baseline
         shell: bash
         run: |
           set -euo pipefail
-          remote_status=0
-          git ls-remote --exit-code --heads origin dist >/dev/null || remote_status=$?
-          if [ "$remote_status" -eq 0 ]; then
+          stable_status=0
+          git ls-remote --exit-code --heads origin dist >/dev/null || stable_status=$?
+          if [ "$stable_status" -eq 0 ]; then
             git fetch origin refs/heads/dist:refs/remotes/origin/dist
-            mkdir -p dist
-            git show refs/remotes/origin/dist:report.json > dist/report.json
-          elif [ "$remote_status" -ne 2 ]; then
-            echo 'Cannot read previous subscription state'
+            mkdir -p .baseline dist
+            git archive refs/remotes/origin/dist | tar -x -C .baseline
+            cp .baseline/report.json dist/report.json
+            echo "commit=$(git rev-parse refs/remotes/origin/dist)" >> "$GITHUB_OUTPUT"
+          elif [ "$stable_status" -ne 2 ]; then
             exit 1
           fi
-      - name: Build from live upstreams
+      - name: Build immutable upstream inputs
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/build.py
+      - name: Analyze policy and stable changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          validation_status=0
+          python scripts/validate.py --candidate dist --baseline .baseline || validation_status=$?
+          if [ "$validation_status" -ne 0 ] && [ "$validation_status" -ne 2 ]; then
+            exit "$validation_status"
+          fi
+      - name: Real Mihomo and AdGuard tests
+        run: python scripts/smoke_engines.py --candidate dist
+      - name: Seal candidate
+        env:
+          STABLE_BASELINE_COMMIT: ${{ steps.baseline.outputs.commit }}
+        run: python scripts/validate.py --candidate dist --seal --baseline-commit "$STABLE_BASELINE_COMMIT"
+      - name: Save validation summary
+        if: always()
+        run: |
+          if [ -f dist/VALIDATION.md ]; then cat dist/VALIDATION.md >> "$GITHUB_STEP_SUMMARY"; fi
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: subscriptions
+          name: candidate
           path: dist/
           retention-days: 7
-          if-no-files-found: error
+          if-no-files-found: warn
 
   publish:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -68,40 +89,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          fetch-depth: 1
+          python-version: '3.12'
       - uses: actions/download-artifact@v4
         with:
-          name: subscriptions
+          name: candidate
           path: generated
-      - name: Publish generated files to dist branch
-        shell: bash
+      - name: Publish candidate only
         run: |
-          set -euo pipefail
-          publish_dir="$(mktemp -d)"
-          git fetch origin refs/heads/dist:refs/remotes/origin/dist || {
-            # A missing branch is expected on first run; network/auth failures are not.
-            remote_status=0
-            git ls-remote --exit-code --heads origin dist >/dev/null || remote_status=$?
-            if [ "$remote_status" -ne 2 ]; then
-              echo "Cannot safely determine dist branch state"
-              exit 1
-            fi
-          }
-          if git show-ref --verify --quiet refs/remotes/origin/dist; then
-            git worktree add --detach "$publish_dir" refs/remotes/origin/dist
-          else
-            git worktree add --detach "$publish_dir" HEAD
-            git -C "$publish_dir" checkout --orphan generated-dist
-          fi
-          git -C "$publish_dir" rm -r -f --ignore-unmatch .
-          cp -R generated/. "$publish_dir/"
-          git -C "$publish_dir" config user.name 'github-actions[bot]'
-          git -C "$publish_dir" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git -C "$publish_dir" add -A
-          if git -C "$publish_dir" diff --cached --quiet; then
-            echo 'Subscriptions unchanged'
-          else
-            git -C "$publish_dir" commit -m 'chore: update subscriptions'
-            git -C "$publish_dir" push origin HEAD:refs/heads/dist
-          fi
+          python scripts/publish_candidate.py --candidate generated --apply > publication.json
+          cat publication.json
+          python scripts/check_remote.py --publication publication.json --candidate generated

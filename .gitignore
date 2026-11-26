@@ -3,3 +3,25 @@ __pycache__/
 .DS_Store
 dist/
 .build-*/
+
+.engine-cache/
+.baseline/
+generated/
+
+# Local work and generated evidence; formal acceptance records remain tracked.
+/work/
+/outputs/
+/artifacts/
+/.reports/
+/VERIFICATION.md
+/docs/*-verification-*.json
+/docs/*-validation-*.json
+/publication.json
+/report.json
+/validation.json
+/engines.json
+/decisions.json
+/manifest.json
+/VALIDATION.md
+/SOURCES.md
+/rules.jsonl*

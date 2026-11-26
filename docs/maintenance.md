@@ -1,81 +1,90 @@
-# 维护与本地构建
+# 构建、验证与发布
 
-本文只描述当前已实现的命令和工作流。目标架构见 [工程架构](architecture.md)，待实施任务见 [实施计划](roadmap.md)。
+本文描述本地新版实现。**新工作流尚未部署，远端仍沿用旧的定时直发机制**；实际切换前检查远端状态。新版部署后，定时任务只更新候选，稳定版由人工验收后晋升。
 
-## 自己维护规则
+## 修改规则
 
-编辑 `config/blocklist.txt`，每行一条：
+| 文件 | 用途 |
+| --- | --- |
+| `config/sources.json` | 必需来源、原生格式、目标客户端和最低条数 |
+| `config/blocklist.txt` | 本地 Classical 拦截规则 |
+| `config/allowlist.txt` | 明确放行的 DOMAIN 或 DOMAIN-SUFFIX |
+| `config/protection.json` | 合并后统一保护及例外 |
+| `config/validation.json` | 审核阈值、固定内核和 SHA-256 |
+| `tests/scenarios.json` | 各客户端的匹配预期与必测场景 |
 
-```text
-DOMAIN,ads.example.com
-DOMAIN-SUFFIX,tracker.example.net
-IP-CIDR,192.0.2.1/32,no-resolve
-DOMAIN-KEYWORD,example-ad
-```
+拦截可以写 `DOMAIN,ads.example.com`、`DOMAIN-SUFFIX,tracker.example.net` 或支持的 IP/关键字规则。IP 和关键字只进入 Mihomo；精确/后缀分别转换为 AdGuard 的 `|domain^` 和 `||domain^`。
 
-- `DOMAIN` 只匹配该域名；输出到 AdGuard 时使用 `|domain^`，保留精确语义。
-- `DOMAIN-SUFFIX` 匹配域名及其子域名；输出到 AdGuard 时使用 `||domain^`。
-- IP 和关键字规则只进入 Clash 输出，并记录在 `report.json` 的 `local_clash_only_rules`，不会直接改写成 DNS 后缀规则。
+放行与原生例外合并，对所有来源生效。保护范围与广告例外须按 [保护规则](protection.md) 维护，不用父域全局白名单替代复杂例外。修改秋风为纯广告版本，并不能保证另外两家来源也移除了隐私或不受欢迎规则。
 
-遇到误拦，编辑 `config/allowlist.txt`：
+## 本地构建与离线复现
 
-```text
-DOMAIN,api.example.com
-DOMAIN-SUFFIX,example.org
-```
-
-白名单只接受精确域名与域名后缀。它与 217heidai 的原生放行规则合并，对所有合并来源生效，并优先于本地黑名单。填写后重新构建或提交到 `main`，让 Actions 更新订阅。
-
-`config/sources.json` 中可以替换、增加或删除来源。当前支持 `classical` 与 `adguard` 两种格式，后者转换到 Clash 时只接受可保留匹配语义的域名规则；不支持的输入会中止构建。`min_rules` 是最低拦截规则数；`max_drop_ratio` 默认为 `0.35`，表示与上次同地址来源相比减少超过 35% 时停止发布。上游有意精简规则时，先核对变化，再调整阈值。
-
-秋风默认使用完整方案，包含广告、隐私与不受欢迎类规则。若改用秋风的纯广告版本，也需要考虑 217heidai 与 Home DNS 仍可能包含同类拦截；仅更换秋风文件不会把整个合并订阅变成纯广告版。
-
-## 本地构建
-
-需要 Python 3.10 或更高版本：
-
-在检出的项目根目录执行：
+在项目根目录运行：
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 scripts/build.py --repository MaoLikeQvQ/Home-Adblock-Rules
+python3 scripts/build.py --repository MaoLikeQvQ/Home-Adblock-Rules --output work/candidate
 ```
 
-输出在本地 `dist/`。该目录被 `.gitignore` 排除，由 Actions 单独发布，不需要提交到源码分支。
+不指定 `--output` 时写入本地 `dist/`。生成文件、测试结果和内核缓存不提交到 main。
 
-从已经保存的原始来源离线复现：
+已有快照可以离线重建：
 
 ```bash
-python3 scripts/build.py \
-  --repository MaoLikeQvQ/Home-Adblock-Rules \
-  --source-dir dist/sources
+python3 scripts/build.py --repository MaoLikeQvQ/Home-Adblock-Rules --source-dir dist/sources --output work/candidate
 ```
 
-`--source-dir` 中的文件名采用 `<source-id>.txt`。生成器保留本轮原始输入，所有输出采用稳定排序，相同输入与项目配置重复构建会得到相同文件。
+`--source-dir` 的文件名为 `<source-id>.txt`，邻接 `report.json` 用于恢复版本和校验输入哈希。发布快照的 `sources/` 中同时保存全部必要代码、配置和场景，可在该目录运行保存的构建入口，并选择独立输出。离线复现不代表验证了上游最新版本。
 
-## 发布到自己的 GitHub
+## 验证候选
 
-1. 在自己的账号创建公开仓库（本项目为 `Home-Adblock-Rules`），以 `main` 为默认分支。
-2. 提交并推送本项目源码。第一次推送包含工作流时会触发构建。
-3. 在仓库的 Actions 中查看 **Update subscriptions**；也可以手动点击 **Run workflow**。
-4. 构建和发布都成功后，会出现 `dist` 分支；[项目首页](../README.md) 的 Raw 链接即可作为订阅。
-
-无需 GitHub Pages、服务器或自定义 Token。发布任务使用 GitHub 提供的 `GITHUB_TOKEN`，仅发布任务需要 `contents: write`。如果组织策略或分支保护禁止工作流写入 `dist`，应针对该发布方式配置权限，再重新运行。公开订阅地址需要规则文件能被客户端无认证访问。
-
-定时任务约在北京时间 **00:23、08:23、16:23** 运行，GitHub 调度可能有延迟。修改 `config/`、生成脚本或工作流也会触发更新。拉取请求只验证和构建，不发布订阅。
-
-任何必需来源下载失败、出现未知格式、低于最低条数或相对上次明显骤减，都不会发布半份规则。完整生成后才替换本地输出；在线 `dist` 也只在构建成功后更新。全部发布文件均未变化时不创建空提交。
-
-## 当前验证命令
+准备完整稳定基准到 `work/stable/`，包括规则、`report.json` 和 `sources/`；记录对应的稳定提交，不能只复制旧统计或用另一轮候选替代。分别执行：
 
 ```bash
-python3 -m unittest discover -s tests -v
+python3 scripts/validate.py --candidate work/candidate --baseline work/stable
+python3 scripts/smoke_engines.py --candidate work/candidate
+python3 scripts/validate.py --candidate work/candidate --seal --baseline-commit STABLE_FULL_SHA
 ```
 
-它运行解析、构建、来源固定和快照复现等回归测试。当前仓库没有持续运行两种内核的测试命令，也没有候选晋升或自动回滚命令。历史内核试验记录见 [验证记录](../VERIFICATION.md)。
+将 `STABLE_FULL_SHA` 换成基准的完整提交。封存必须在本轮报告和内核检查完成后进行；规则、代码或配置变化后重新构建和验证，不给旧结果重新贴标签。
 
-## 当前更新失败的处理
+validate 返回 2 表示待审核，内核工具返回 3 表示平台或必要环境未配置；1 为失败，0 为相应自动检查通过。设备验收独立完成，不能用退出码 0 代替。
 
-从 Actions 的失败步骤与错误信息定位来源、格式或数量变化。先对照固定输入和上一版报告，再修正配置或解析器；不以关闭检查作为常规恢复手段。更改源码、配置和工作流会触发重新构建。线上已有 `dist` 在构建失败时保持原样，但客户端可能仍有旧缓存。
+检查生成的文件：
 
-本地从 `dist/sources` 离线复现的是已保存输入；它用于确认构建一致性，不能证明上游最新分支或真实 App 当前行为。
+| 文件 | 内容 |
+| --- | --- |
+| `SOURCES.md`、`report.json`、`sources/` | 固定来源、哈希、原始输入与源码 |
+| `rules.jsonl.gz`、`decisions.json` | 完整原文位置及保护决定 |
+| `validation.json`、`VALIDATION.md` | 稳定差异、审核项和未完成项 |
+| `engines.json` | 固定内核及真实匹配结果 |
+| `manifest.json` | 文件、源码、配置指纹与候选 ID |
+
+内核测试使用临时目录和回环网络。官方包哈希不符、输出被修改、配置与快照不一致、必要场景缺失或执行失败均不通过。已配置 Linux amd64、macOS arm64；其他架构不能推断为兼容。
+
+## 候选与稳定通道
+
+新版 update 工作流在北京时间约 00:23、08:23、16:23 运行；调度可能延迟。PR 只验证，main 的构建通过必要检查后才发布 candidate。待审核候选可供明确标记的试用，失败或未完成的必要检查不更新可用候选。
+
+每个候选用不可变提交定位，试用优先使用同版 `mihomo.pinned.yaml`；不要在测试期间一直跟随可变 candidate 分支。Mihomo 两个提供者独立刷新，可变 URL 不保证客户端同时更新。
+
+## 手动晋升与回滚
+
+按 [设备验收](acceptance/README.md) 完成真实场景，提交 `docs/acceptance/名称.json`。维护者手动运行 **Promote or rollback stable rules**，填写完整候选提交与验收路径。
+
+本地预检默认不写远端：
+
+```bash
+python3 scripts/promote.py promote --candidate-commit FULL_SHA --acceptance docs/acceptance/名称.json --dry-run
+python3 scripts/promote.py rollback --release-commit PRIOR_RELEASE_SHA --reason '已确认的故障原因' --dry-run
+```
+
+实际发布需显式 `--apply` 和操作授权。晋升核对逐项审核、设备证据、内核结果、源码/配置、稳定基准及产物哈希，只拷贝已测规则，不重新拉取上游。稳定基准已变化时拒绝晋升，需重新分析累计变化。
+
+回滚用追加提交恢复旧字节，不强推。工具要求目标是带完整清单、发布及验收记录的历史稳定版；迁移前的 legacy dist 不满足此结构，需要另行保留其固定提交作为人工恢复依据。
+
+发布后检查固定提交 Raw 文件哈希。缓存或网络导致无法确认时如实报告，不自动声称已生效或已回滚；客户端仍需刷新。失败、审核和回滚记录不能补写成完整测试通过。
+
+## 存储约定
+
+main 保留代码、配置、测试、必要文档及正式验收记录。规则与随版证据由 candidate/dist 分支保存；一次性日志、历史 JSON、调试产物写本地 `work/`、`artifacts/` 或 Actions 附件。Actions 附件保留 7 天，不能作为唯一长期版本存档。

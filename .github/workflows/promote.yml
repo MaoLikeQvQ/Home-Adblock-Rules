@@ -1,0 +1,57 @@
+name: Promote or rollback stable rules
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        options: [promote, rollback]
+        required: true
+      commit:
+        description: Full candidate or prior release commit SHA
+        required: true
+      acceptance:
+        description: Tracked docs/acceptance/*.json path for promotion
+      reason:
+        description: Required rollback reason
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stable-rules
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify and publish selected snapshot
+        env:
+          RELEASE_ACTION: ${{ inputs.action }}
+          SNAPSHOT_COMMIT: ${{ inputs.commit }}
+          ACCEPTANCE_PATH: ${{ inputs.acceptance }}
+          ROLLBACK_REASON: ${{ inputs.reason }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$SNAPSHOT_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          git fetch origin refs/heads/candidate:refs/remotes/origin/candidate
+          git fetch origin refs/heads/dist:refs/remotes/origin/dist
+          if [ "$RELEASE_ACTION" = promote ]; then
+            [[ "$ACCEPTANCE_PATH" =~ ^docs/acceptance/[a-zA-Z0-9_-]+.json$ ]]
+            git ls-files --error-unmatch -- "$ACCEPTANCE_PATH" >/dev/null
+            git merge-base --is-ancestor "$SNAPSHOT_COMMIT" refs/remotes/origin/candidate
+            python scripts/promote.py promote --candidate-commit "$SNAPSHOT_COMMIT" --acceptance "$ACCEPTANCE_PATH" --apply
+          else
+            python scripts/promote.py rollback --release-commit "$SNAPSHOT_COMMIT" --reason "$ROLLBACK_REASON" --apply
+          fi
