@@ -1,0 +1,4 @@
+# 自己补充的白名单；两种格式均生效，优先于拦截规则。
+# DOMAIN,api.example.com
+# DOMAIN-SUFFIX,example.com
+# 不支持 IP 或关键字白名单；遇到此类输入会报错。

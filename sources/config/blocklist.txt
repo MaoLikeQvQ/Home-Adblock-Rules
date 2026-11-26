@@ -1,0 +1,5 @@
+# 自己补充的拦截规则，一行一条。去掉示例前的 # 才会生效。
+# DOMAIN,ads.example.com              仅精确域名
+# DOMAIN-SUFFIX,ads.example.com       域名及其子域名
+# IP-CIDR,192.0.2.1/32,no-resolve      仅输出到 Clash
+# DOMAIN-KEYWORD,example-ad           仅输出到 Clash
