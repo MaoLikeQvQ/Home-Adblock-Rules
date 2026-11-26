@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "id": "awa-clash",
+      "name": "AWAvenue 秋风广告规则（Clash Classical）",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml",
+      "homepage": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule",
+      "license": "GPL-3.0",
+      "format": "classical",
+      "targets": ["clash"],
+      "min_rules": 500
+    },
+    {
+      "id": "awa-dns",
+      "name": "AWAvenue 秋风广告规则（AdGuard DNS）",
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt",
+      "homepage": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule",
+      "license": "GPL-3.0",
+      "format": "adguard",
+      "targets": ["adguard"],
+      "min_rules": 500
+    },
+    {
+      "id": "heidai-dns",
+      "name": "217heidai AdBlock DNS Filters",
+      "url": "https://raw.githubusercontent.com/217heidai/adblockfilters/dist/adblockdns.txt",
+      "homepage": "https://github.com/217heidai/adblockfilters",
+      "license": "GPL-3.0",
+      "format": "adguard",
+      "targets": ["clash", "adguard"],
+      "min_rules": 10000
+    }
+  ]
+}

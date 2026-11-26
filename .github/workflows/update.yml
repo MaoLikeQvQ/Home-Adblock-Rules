@@ -1,0 +1,105 @@
+name: Update subscriptions
+
+on:
+  schedule:
+    # UTC 00:23 / 08:23 / 16:23，即北京时间 08:23 / 16:23 / 00:23。
+    - cron: '23 */8 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'LICENSE'
+      - 'NOTICE.md'
+      - 'licenses/**'
+      - '.github/workflows/update.yml'
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: subscriptions-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Load last published counts
+        shell: bash
+        run: |
+          set -euo pipefail
+          remote_status=0
+          git ls-remote --exit-code --heads origin dist >/dev/null || remote_status=$?
+          if [ "$remote_status" -eq 0 ]; then
+            git fetch origin refs/heads/dist:refs/remotes/origin/dist
+            mkdir -p dist
+            git show refs/remotes/origin/dist:report.json > dist/report.json
+          elif [ "$remote_status" -ne 2 ]; then
+            echo 'Cannot read previous subscription state'
+            exit 1
+          fi
+      - name: Build from live upstreams
+        run: python scripts/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: subscriptions
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        with:
+          name: subscriptions
+          path: generated
+      - name: Publish generated files to dist branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          publish_dir="$(mktemp -d)"
+          git fetch origin refs/heads/dist:refs/remotes/origin/dist || {
+            # A missing branch is expected on first run; network/auth failures are not.
+            remote_status=0
+            git ls-remote --exit-code --heads origin dist >/dev/null || remote_status=$?
+            if [ "$remote_status" -ne 2 ]; then
+              echo "Cannot safely determine dist branch state"
+              exit 1
+            fi
+          }
+          if git show-ref --verify --quiet refs/remotes/origin/dist; then
+            git worktree add --detach "$publish_dir" refs/remotes/origin/dist
+          else
+            git worktree add --detach "$publish_dir" HEAD
+            git -C "$publish_dir" checkout --orphan generated-dist
+          fi
+          git -C "$publish_dir" rm -r -f --ignore-unmatch .
+          cp -R generated/. "$publish_dir/"
+          git -C "$publish_dir" config user.name 'github-actions[bot]'
+          git -C "$publish_dir" config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C "$publish_dir" add -A
+          if git -C "$publish_dir" diff --cached --quiet; then
+            echo 'Subscriptions unchanged'
+          else
+            git -C "$publish_dir" commit -m 'chore: update subscriptions'
+            git -C "$publish_dir" push origin HEAD:refs/heads/dist
+          fi
