@@ -12,15 +12,14 @@
 
 | 内核 / 过滤引擎 | 内容 | 地址 |
 | --- | --- | --- |
-| Mihomo / Clash Meta | 拦截规则，Classical YAML | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml |
-| Mihomo / Clash Meta | 配套放行白名单，Classical YAML | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml |
+| Mihomo / Clash Meta | 单订阅候选，Classical YAML，已处理白名单 | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/candidate/clash.yaml |
 | AdGuard Home / AdGuard DNS 过滤引擎 | DNS 过滤规则，已含放行例外 | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt |
 
-**Mihomo / Clash Meta：**拦截规则和白名单配套使用，均选择 `behavior: classical`、`format: yaml`。白名单不设为拦截或强制直连，通过 [配置片段](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/mihomo.example.yaml) 中的逻辑规则保留原有分流。
+**Mihomo / Clash Meta：**只添加一个提供者，选择 `behavior: classical`、`format: yaml`，使用 `RULE-SET,home-adblock,REJECT`。参考 [候选配置片段](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/candidate/mihomo.pinned.yaml)，放在广泛匹配规则和 `MATCH` 前面。白名单已在构建时处理，无需另配白名单订阅；放行流量继续走原有分流。
 
 **AdGuard：**将 `adguard.txt` 地址添加到自定义 DNS 封锁清单，只需这一条订阅。
 
-这些是规则订阅，不含代理节点。未验证其他内核的兼容性。以上 `dist` 为稳定地址；每 8 小时自动构建的新版先进入 `candidate`，审核后再更新稳定版，构建状态见 [GitHub Actions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml)。
+这些是规则订阅，不含代理节点。未验证其他内核的兼容性。Mihomo 单订阅新版目前在 `candidate` 待审核；`dist` 尚未迁移，已有稳定版仍需原配套白名单，不能只删除旧配置中的白名单提供者。每 8 小时自动构建候选，审核后再更新稳定版，构建状态见 [GitHub Actions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml)。
 
 ## 规则来源
 

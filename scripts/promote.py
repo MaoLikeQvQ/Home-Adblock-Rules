@@ -14,6 +14,7 @@ if __package__ in (None, ''):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from scripts.validate import ROOT, digest, file_hashes, read_rules
 from scripts.rules.protection import witness_scenarios
+from scripts.rules.allowlist import allow_scenarios
 
 EXCLUDED = ('manifest.json', 'acceptance.json', 'release.json', 'mihomo.pinned.yaml')
 
@@ -115,6 +116,13 @@ def verify(directory, implementation_root=None):
             raise ValueError('protection intersection witness coverage mismatch')
         if any(case['status'] != 'passed' for case in actual_witnesses):
             raise ValueError('protection witness checks incomplete')
+        if engine == 'mihomo' and report.get('mihomo_allow_mode') == 'compiled':
+            expected_allow = {case['id']: case['expected'] for case in allow_scenarios(directory)}
+            actual_allow = engine_result.get('allowlist_cases', [])
+            if (len(actual_allow) != len(expected_allow) or
+                    {case['id']: case.get('expected') for case in actual_allow} != expected_allow or
+                    any(case['status'] != 'passed' for case in actual_allow)):
+                raise ValueError('single provider allowlist coverage incomplete')
     verify_pinned_example(directory, report)
     return manifest, validation
 

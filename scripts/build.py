@@ -30,6 +30,7 @@ from scripts.rules.parsers import (
 )
 
 from scripts.rules.protection import RuleIndex, load_policies, apply_protection
+from scripts.rules.allowlist import compile_allowlist
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_BYTES = 32 * 1024 * 1024
@@ -201,13 +202,17 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
     dns_block, dns_decisions = apply_protection(
         'adguard', dns_block, dns_allow, policies, index)
     decisions = clash_decisions + dns_decisions
-    # Remove identical conflicts. Parent/child exceptions are expressed by the
-    # dedicated allow provider / native AdGuard exceptions, not by broadening rules.
+    # Remove identical conflicts, then compile remaining Mihomo exceptions.
+    # AdGuard keeps native exceptions in its single subscription.
     clash_block.difference_update(clash_allow)
     dns_block.difference_update(dns_allow)
+    uncompiled_clash = set(clash_block)
+    clash_block, allow_decisions = compile_allowlist(clash_block, clash_allow, index)
+    decisions.extend(allow_decisions)
     if not clash_block or not dns_block:
         raise ValueError("empty final subscription")
-    for target, final, local in [("clash", clash_block, own_block), ("adguard", dns_block, own_dns_block)]:
+    retained_clash = uncompiled_clash - {d['rule'] for d in allow_decisions if d['decision'] == 'drop'}
+    for target, final, local in [("clash", retained_clash, own_block), ("adguard", dns_block, own_dns_block)]:
         frequency = Counter(rule for entry in source_rules.values() for rule in entry.get(target, set()))
         for entry in reports:
             if target not in entry["contribution"]:
@@ -226,7 +231,8 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
               "# Upstream: 217heidai/adblockfilters (GPLv3)\n"
               "# Upstream: abclq/home-dns-adblock (MIT)\n"
               "# See sources/ for original inputs, notices and licenses.\n")
-    report = {"schema_version": 2, "protection": {"policies": policies, "decisions": len(decisions)},
+    report = {"schema_version": 2, "mihomo_allow_mode": "compiled",
+              "protection": {"policies": policies, "decisions": len(decisions)},
               "repository": repository, "sources": reports,
               "counts": {"clash_block": len(clash_block), "clash_allow": len(clash_allow),
                          "adguard_block": len(dns_block), "adguard_allow": len(dns_allow)},
@@ -235,13 +241,6 @@ def build(root: Path, output: Path, repository: str, source_dir: Path | None = N
     base_url = f"https://raw.githubusercontent.com/{repository}/dist"
     example = f"""# 合并进现有 Mihomo 配置；这是规则片段，不是代理节点订阅。
 rule-providers:
-  home-adblock-allow:
-    type: http
-    behavior: classical
-    format: yaml
-    url: {base_url}/clash-allow.yaml
-    path: ./ruleset/home-adblock-allow.yaml
-    interval: 28800
   home-adblock:
     type: http
     behavior: classical
@@ -250,9 +249,8 @@ rule-providers:
     path: ./ruleset/home-adblock.yaml
     interval: 28800
 rules:
-  # 仅拦截命中黑名单且不在白名单的连接；白名单继续走现有分流。
-  # 放在其他广泛匹配规则和 MATCH 前。需要支持逻辑规则的 Mihomo。
-  - AND,((RULE-SET,home-adblock),(NOT,((RULE-SET,home-adblock-allow)))),REJECT
+  # 白名单已在构建时处理；放在广泛匹配规则和 MATCH 前。
+  - RULE-SET,home-adblock,REJECT
 """
     # Fetching, parsing and rendering all happen before touching the current output.
     output = output.resolve()
@@ -263,7 +261,9 @@ rules:
         stage = Path(temporary) / "dist"
         stage.mkdir()
         (stage / "clash.yaml").write_text(yaml_payload(clash_block, header), encoding="utf-8")
-        (stage / "clash-allow.yaml").write_text(yaml_payload(clash_allow, header), encoding="utf-8")
+        (stage / "clash-allow.yaml").write_text(yaml_payload(
+            clash_allow, header + '# Audit and legacy-client compatibility; not required by the compiled provider.\n'),
+            encoding="utf-8")
         dns_text = header.replace("#", "!") + "! Expires: 8 hours\n"
         dns_text += "\n".join(sorted(dns_block)) + "\n"
         dns_text += "\n".join("@@" + rule for rule in sorted(dns_allow)) + "\n"

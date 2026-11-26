@@ -23,8 +23,7 @@ class EngineInfrastructureTests(unittest.TestCase):
         for providers in (None, {}, {'home-adblock': None},
                           {'home-adblock': {'ruleCount': 0}, 'home-adblock-allow': {'ruleCount': 2}}):
             self.assertFalse(providers_ready(providers, counts))
-        self.assertTrue(providers_ready({'home-adblock': {'ruleCount': 100},
-                                         'home-adblock-allow': {'ruleCount': 2}}, counts))
+        self.assertTrue(providers_ready({'home-adblock': {'ruleCount': 100}}, counts))
 
     def test_controlled_dns_answers_both_address_families(self):
         with serve(socketserver.ThreadingUDPServer(('127.0.0.1', 0), DNSHandler)) as port:

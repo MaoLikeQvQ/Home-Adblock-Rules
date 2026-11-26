@@ -10,6 +10,7 @@ import test_build
 from scripts.promote import verify, verify_acceptance, safe_path, publish, git, export_commit, verify_pinned_commit, verify_baseline_evidence
 from scripts.publish_candidate import publish_candidate
 from scripts.validate import digest, seal, validate
+from scripts.rules.allowlist import allow_scenarios
 
 
 class ReleaseTests(unittest.TestCase):
@@ -36,6 +37,9 @@ class ReleaseTests(unittest.TestCase):
                        'adguard': {'status': 'passed', 'cases': [{'id': 'fixture', 'query_type': kind, 'status': 'passed'}
                                                               for kind in ['A', 'AAAA']]}}}
         (self.output / 'engines.json').write_text(json.dumps(engines))
+        engines['engines']['mihomo']['allowlist_cases'] = [
+            {'id': case['id'], 'status': 'passed', 'expected': case['expected']}
+            for case in allow_scenarios(self.output)]
         for result in engines['engines'].values():
             result.update(version='fixture-version', archive_sha256='0' * 64)
             for case in result['cases']:
@@ -62,6 +66,16 @@ class ReleaseTests(unittest.TestCase):
             verify_acceptance(record, manifest, validation)
         (self.output / 'adguard.txt').write_text('changed')
         with self.assertRaisesRegex(ValueError, 'hash or file set'):
+            verify(self.output)
+
+    def test_single_provider_requires_original_allowlist_coverage(self):
+        self.fixture()
+        path = self.output / 'engines.json'
+        engines = json.loads(path.read_text())
+        engines['engines']['mihomo']['allowlist_cases'].pop()
+        path.write_text(json.dumps(engines))
+        seal(self.output, self.root)
+        with self.assertRaisesRegex(ValueError, 'single provider allowlist coverage'):
             verify(self.output)
 
     def test_path_and_symlink_rejected(self):

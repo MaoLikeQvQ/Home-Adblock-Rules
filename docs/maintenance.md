@@ -40,7 +40,7 @@ python3 scripts/validate.py --candidate work/candidate --seal --baseline-commit 
 
 [Update subscriptions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml) 每 8 小时运行，只有必要检查成功才更新 `candidate`；PR 只验证。`dist` 稳定版通过 **Promote or rollback stable rules** 手动晋升或回滚。
 
-试用候选时使用完整提交 SHA；Mihomo 选择该提交的 `mihomo.pinned.yaml`，保证黑白名单引用同一版规则。可变分支的两个提供者可能在不同时间刷新。
+试用候选时使用完整提交 SHA；Mihomo 选择该提交的 `mihomo.pinned.yaml`，只加载一个规则提供者。新候选的 `clash.yaml` 已处理放行例外；`clash-allow.yaml` 仅保留作审计及旧配置兼容，无需单独订阅。旧稳定版在晋升前仍沿用双提供者配置。
 
 当前晋升工具要求将候选审核记录提交到 `docs/acceptance/名称.json`。记录字段如下：
 

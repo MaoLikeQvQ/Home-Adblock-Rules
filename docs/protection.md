@@ -11,6 +11,8 @@
 
 父域下仍有广告子域时，不能用全局放行替代黑名单筛选。例如 `@@||qznovelvod.com^` 也会放过其中的广告子域。
 
+Mihomo 在构建时移除完全被白名单覆盖的拦截规则；父域与放行子域仅部分重叠时，将排除条件内嵌到同一个 Classical 提供者。关键字及 IP 规则也保留放行例外和原有 `no-resolve`。客户端只需一份订阅。原生上游解析仍拒绝未知逻辑，输出解析只接受本项目编译的固定语法。
+
 ## 已采用的保护
 
 依据 Home DNS [固定版本白名单](https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/config/whitelist.txt) 及 [域名说明](https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/docs/domain-list.md)，当前保护以下后缀：
