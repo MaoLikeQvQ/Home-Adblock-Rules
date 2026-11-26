@@ -1,0 +1,46 @@
+[
+  {
+    "source": "awa-clash",
+    "github_metadata": {
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/8965815bf3978bdaccdd7a18ec694db67e14d5c1/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml",
+      "html_url": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/8965815bf3978bdaccdd7a18ec694db67e14d5c1/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml",
+      "sha": "10dc8e692d84abea01320632a5bc2a992d689007",
+      "size": 32308
+    },
+    "sha256": "58a85bfdfccb48f7038bb520df4f5c67ffa44a79c0e14aa962777847a3614845",
+    "git_blob_matches": true
+  },
+  {
+    "source": "awa-dns",
+    "github_metadata": {
+      "download_url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/8965815bf3978bdaccdd7a18ec694db67e14d5c1/AWAvenue-Ads-Rule.txt",
+      "html_url": "https://github.com/TG-Twilight/AWAvenue-Ads-Rule/blob/8965815bf3978bdaccdd7a18ec694db67e14d5c1/AWAvenue-Ads-Rule.txt",
+      "sha": "f1b2b2feff996920c151119252eb1197e550e248",
+      "size": 23771
+    },
+    "sha256": "9c7204be5180e33ed97d2f7b8dc9fc1b61e6aabdaafa149ed9165636294f7f7b",
+    "git_blob_matches": true
+  },
+  {
+    "source": "heidai-dns",
+    "github_metadata": {
+      "download_url": "https://raw.githubusercontent.com/217heidai/adblockfilters/08c72d35e0b25c259d83aac5e55eb38bea2f0d3d/adblockdns.txt",
+      "html_url": "https://github.com/217heidai/adblockfilters/blob/08c72d35e0b25c259d83aac5e55eb38bea2f0d3d/adblockdns.txt",
+      "sha": "bab4a38cd381d7e70244346334ba56c7bd620f1a",
+      "size": 6129031
+    },
+    "sha256": "d9505657be49bb3f24fc96991a8796a4c1815d41b99630bd0d4b400f870d8b76",
+    "git_blob_matches": true
+  },
+  {
+    "source": "home-dns",
+    "github_metadata": {
+      "download_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/27a0a29c9941759662f48b78c985d0273caaa023/dist/adguard-dns-full.txt",
+      "html_url": "https://github.com/abclq/home-dns-adblock/blob/27a0a29c9941759662f48b78c985d0273caaa023/dist/adguard-dns-full.txt",
+      "sha": "98bde2862bf79d75b69e3a52b302b923940f9363",
+      "size": 24991
+    },
+    "sha256": "2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3",
+    "git_blob_matches": true
+  }
+]

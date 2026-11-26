@@ -4,7 +4,7 @@
 
 使用 Python 标准库构建，无需安装第三方 Python 依赖。GitHub Actions 每 8 小时同步上游，规则发布到独立的 `dist` 分支，源码保留在 `main` 分支。
 
-项目仓库：[MaoLikeQvQ/Home-Adblock-Rules](https://github.com/MaoLikeQvQ/Home-Adblock-Rules)。在线规则由本仓库的 GitHub Actions 生成并发布，首次工作流成功后即可订阅。
+项目仓库：[MaoLikeQvQ/Home-Adblock-Rules](https://github.com/MaoLikeQvQ/Home-Adblock-Rules)。在线规则已由本仓库的 GitHub Actions 生成并发布，可以直接订阅下列地址。
 
 ## 规则来源
 
@@ -37,7 +37,7 @@
 
 ## 如何核对规则来源
 
-每次在线构建先通过 GitHub API 把上游分支固定到具体提交，再从该提交下载文件，避免只记录一个会继续变化的分支地址。打开 `dist` 分支的 `SOURCES.md`，可以看到每个输入的不可变下载地址、上游提交、原始快照、SHA-256、Git Blob SHA-1，以及合并去重后的实际新增和独有规则示例。完整机器可读证据在 `report.json`。
+每次在线构建先通过 GitHub API 把上游分支固定到具体提交，再从该提交下载文件，避免只记录一个会继续变化的分支地址。打开 `dist` 分支的 `SOURCES.md`，可以看到每个输入的不可变下载地址、上游提交、原始快照、SHA-256、Git Blob SHA-1，以及合并去重后的实际新增和独有规则示例。完整机器可读证据在 `report.json`。首次发布时另行通过 GitHub Contents API 核对了四个输入文件，返回的上游 Git Blob SHA-1 全部匹配原始快照；记录见 [2026-11-26 来源独立核验](docs/source-verification-2026-11-26.json)。
 
 可将 `report.json` 中某个来源的 `resolved_url` 文件下载后计算 SHA-256，与它的 `sha256` 比较。比如在本地查看 Home DNS 的证据：
 

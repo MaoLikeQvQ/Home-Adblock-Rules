@@ -43,10 +43,18 @@
 
 ## 尚未覆盖
 
-- GitHub 托管环境中的首次 Actions 执行及线上 Raw 地址，需要发布仓库后验证。
 - 旧 Clash 内核兼容性、实体路由器性能、具体 App 的所有广告场景，没有完成实机验证。
 - 这些检查证明规则可构建、内核可加载及所选拦截/放行场景有效，不代表所有广告都能拦截或没有误拦。
 
 ## 来源真实性与合并贡献
 
 真实在线构建先把三个 GitHub 项目的来源固定到提交，再下载该提交上的文件；全部原始输入、SHA-256、Git Blob SHA-1 与贡献统计记录在 `dist/report.json` 和 `dist/SOURCES.md`。Home DNS 的 1,019 条输入全部保留；相对其他来源，AdGuard 有 29 条独有规范化规则，Clash 有 417 条。两者差异来自精确域名与后缀规则分别保留，这些数值不等同于新增覆盖的域名数量。
+
+## GitHub 发布与线上核验
+
+- 远端仓库：<https://github.com/MaoLikeQvQ/Home-Adblock-Rules>，保留初始化提交与 MIT 许可。
+- 首次工作流：<https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/runs/45737489867>，`build` 和 `publish` 均成功；构建代码提交为 `415018a16c854286a55a1c05c4c2a2a650f932e2`。
+- 首次规则发布提交：`6941e6580eb92c41bf76fb9fcfac03df8100d895`（`dist` 分支）。
+- `report.json`、`SOURCES.md`、`clash.yaml`、`clash-allow.yaml`、`adguard.txt`、`mihomo.example.yaml` 与 `sources/home-dns.txt` 的公开 Raw 地址均返回 HTTP 200。
+- 在线三个规则文件的 SHA-256 均与在线报告一致。Home DNS 原始快照 SHA-256 与上游固定提交下载的文件一致；`activity-ag.awemeughun.com` 已出现在在线两种拦截订阅中。
+- 独立调用 GitHub Contents API，逐个核对上游固定提交中的文件：四个 Git Blob SHA-1 均与原始快照计算值一致。原始 API 元数据见 `docs/source-verification-2026-11-26.json`。
