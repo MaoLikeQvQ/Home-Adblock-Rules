@@ -809,6 +809,16 @@
           "expected": "pass"
         },
         {
+          "id": "allow-706bd72c4be837de",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-fa1f074bd0608db4",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
           "id": "allow-efe11d790052d5cd",
           "status": "passed",
           "expected": "pass"
@@ -880,6 +890,11 @@
         },
         {
           "id": "allow-2bb2abd76579fd36",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-ff69f5efe9fe74e4",
           "status": "passed",
           "expected": "pass"
         },
@@ -1080,6 +1095,11 @@
         },
         {
           "id": "allow-4afa654016a5899b",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-352acb5f1d52a999",
           "status": "passed",
           "expected": "pass"
         },
@@ -1694,6 +1714,16 @@
           "expected": "pass"
         },
         {
+          "id": "allow-4ee5ac490595542c",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-3a2a942b48d565c8",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
           "id": "allow-ddce60e81c46393f",
           "status": "passed",
           "expected": "pass"
@@ -1765,6 +1795,11 @@
         },
         {
           "id": "allow-5319256ab010b71e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-b19ca9910031c256",
           "status": "passed",
           "expected": "pass"
         },
@@ -1965,6 +2000,11 @@
         },
         {
           "id": "allow-f9dd76dcaf43740e",
+          "status": "passed",
+          "expected": "pass"
+        },
+        {
+          "id": "allow-7ca5856b2f6e9051",
           "status": "passed",
           "expected": "pass"
         },
@@ -2640,8 +2680,8 @@
   },
   "validation_config_sha256": "49bf8d0bb92958f50f14de9b8439106bb5a68bb6c6c66731df904e0daa5842f3",
   "output_sha256": {
-    "clash.yaml": "664b2f94894ca7f4d629db09595dd506de4b5f5d5ead05581915aa69e4007bf8",
-    "clash-allow.yaml": "56386917dba682e9dd4b1ec61efaa774b156121c88b288dbe47d21a1b4f24b47",
-    "adguard.txt": "3063f9195a0f7d466e881ec4348383f3294b8f6889f8ecef906d4a4255e58af6"
+    "clash.yaml": "f1943267e066025c7ce86a519dee5ce5aab84ec904b455bbb63ceb48726214a7",
+    "clash-allow.yaml": "d6df8e84c519ed9266409d19f06c71d50e419ddd4479a00f804defeb9346af77",
+    "adguard.txt": "48eac1440ae6630d37f2fab15495c05d0157c1847b4f35f8c3ecbb05acf38f99"
   }
 }

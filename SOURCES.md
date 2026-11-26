@@ -54,13 +54,13 @@ DOMAIN,ad-cdn.qingting.fm
 ## 217heidai AdBlock DNS Filters
 
 - 项目：https://github.com/217heidai/adblockfilters
-- 实际下载：https://raw.githubusercontent.com/217heidai/adblockfilters/08c72d35e0b25c259d83aac5e55eb38bea2f0d3d/adblockdns.txt
+- 实际下载：https://raw.githubusercontent.com/217heidai/adblockfilters/4c4fda524b0cb301064e260d68fe5a568345ae48/adblockdns.txt
 - 原始快照：[sources/heidai-dns.txt](sources/heidai-dns.txt)
-- 上游提交：`08c72d35e0b25c259d83aac5e55eb38bea2f0d3d`
-- SHA-256：`d9505657be49bb3f24fc96991a8796a4c1815d41b99630bd0d4b400f870d8b76`
-- Git Blob SHA-1：`bab4a38cd381d7e70244346334ba56c7bd620f1a`
-- 解析结果：拦截 252252 条，放行 194 条。
-- clash：按来源顺序新增 252243 条；与之前来源重复 9 条；最终保留 252218 条；该来源独有 251619 条。
+- 上游提交：`4c4fda524b0cb301064e260d68fe5a568345ae48`
+- SHA-256：`3cbe42927becb4008603c95646a03e389c74c9aa9a5a4795f2dcf09dc5f244e7`
+- Git Blob SHA-1：`0514b8d6b3fbba004017fb6fda3aeafa2ef29c58`
+- 解析结果：拦截 253854 条，放行 198 条。
+- clash：按来源顺序新增 253845 条；与之前来源重复 9 条；最终保留 253820 条；该来源独有 253202 条。
 
 独有规则示例：
 
@@ -77,7 +77,7 @@ DOMAIN-SUFFIX,0.net.easyjet.com
 DOMAIN-SUFFIX,0.nextyourcontent.com
 ```
 
-- adguard：按来源顺序新增 251666 条；与之前来源重复 586 条；最终保留 252219 条；该来源独有 251604 条。
+- adguard：按来源顺序新增 253252 条；与之前来源重复 602 条；最终保留 253821 条；该来源独有 253187 条。
 
 独有规则示例：
 
@@ -98,13 +98,13 @@ DOMAIN-SUFFIX,0.nextyourcontent.com
 ## abclq Home DNS Adblock（精确规则 + 上游全量）
 
 - 项目：https://github.com/abclq/home-dns-adblock
-- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/d8e8f5b47e89b1ec3b3923917159861cc3173678/dist/adguard-dns-full.txt
+- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/cb0534577075948526529f53c9c5f5b360966cf5/dist/adguard-dns-full.txt
 - 原始快照：[sources/home-dns.txt](sources/home-dns.txt)
-- 上游提交：`d8e8f5b47e89b1ec3b3923917159861cc3173678`
+- 上游提交：`cb0534577075948526529f53c9c5f5b360966cf5`
 - SHA-256：`2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3`
 - Git Blob SHA-1：`98bde2862bf79d75b69e3a52b302b923940f9363`
 - 解析结果：拦截 1019 条，放行 0 条。
-- clash：按来源顺序新增 417 条；与之前来源重复 602 条；最终保留 1019 条；该来源独有 417 条。
+- clash：按来源顺序新增 398 条；与之前来源重复 621 条；最终保留 1019 条；该来源独有 398 条。
 
 独有规则示例：
 
@@ -121,7 +121,7 @@ DOMAIN-SUFFIX,adc.hpplay.cn
 DOMAIN-SUFFIX,adcdn.hpplay.cn
 ```
 
-- adguard：按来源顺序新增 29 条；与之前来源重复 990 条；最终保留 1019 条；该来源独有 29 条。
+- adguard：按来源顺序新增 26 条；与之前来源重复 993 条；最终保留 1019 条；该来源独有 26 条。
 
 独有规则示例：
 
