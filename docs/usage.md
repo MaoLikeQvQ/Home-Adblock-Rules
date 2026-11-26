@@ -1,34 +1,19 @@
 # 订阅使用指南
 
-本文说明客户端配置。下列 dist 地址为稳定订阅，自动构建只更新 candidate 候选通道。试用新版时选择成功发布的固定候选提交及配套 mihomo.pinned.yaml，通过审核和设备验收后才晋升稳定版。
+以下是 `dist` 稳定通道的订阅地址。它们是规则集，不含代理节点。
 
 ## Mihomo / Clash Meta 用法
 
-把下面片段合并进现有配置；已有 `rule-providers:` 或 `rules:` 时，合并其中的条目，不要重复顶层键。把广告逻辑规则放在广泛匹配规则和 `MATCH` 前面。
+| 文件 | 地址 |
+| --- | --- |
+| 拦截规则 | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml |
+| 放行例外（白名单） | https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml |
 
-```yaml
-rule-providers:
-  home-adblock:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml
-    path: ./ruleset/home-adblock.yaml
-    interval: 28800
-  home-adblock-allow:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml
-    path: ./ruleset/home-adblock-allow.yaml
-    interval: 28800
+`clash-allow.yaml` 保存上游要求放行的域名，本来就不含拦截规则。当前输出将黑名单和白名单分开；不是让客户端同时加载两套拦截规则，也不能把白名单设为 REJECT。
 
-rules:
-  - AND,((RULE-SET,home-adblock),(NOT,((RULE-SET,home-adblock-allow)))),REJECT
-  # 接着保留你现有的分流规则与 MATCH。
-```
+将 [Mihomo 配置片段](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/mihomo.example.yaml) 合并到现有配置。两个提供者都用 `behavior: classical`、`format: yaml`，通过片段中的逻辑规则拦截“命中黑名单且不在白名单”的连接。已有 `rule-providers:` 或 `rules:` 时合并其中的条目，不要重复顶层键；将广告逻辑规则放在广泛匹配规则和 `MATCH` 前面。
 
-这条逻辑规则只拒绝“命中广告规则且不在白名单”的连接。白名单继续走后面的正常分流，不会被强制改成直连。**两个规则提供者必须一起配置。** 只添加拦截集会丢失上游的例外保护。
+白名单继续走后面的正常分流。只添加拦截集会丢失上游的例外保护。
 
 推荐使用 Mihomo 内核（Clash Meta）。不支持 `AND` / `NOT` / `RULE-SET` 组合的旧 Clash 内核需要升级；本项目没有对旧 Clash 内核完成兼容验证。
 
@@ -36,9 +21,7 @@ rules:
 
 进入“过滤器 → DNS 封锁清单 → 添加拦截列表 → 添加自定义列表”，填写：
 
-```text
 https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt
-```
 
 AdGuard DNS 或支持 DNS 过滤语法的 AdGuard 客户端也可以使用该文件。`@@` 放行规则已经合并在同一订阅中，不需要再单独添加白名单订阅。浏览器元素隐藏与脚本过滤不在这份 DNS 规则的范围内。
 

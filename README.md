@@ -2,24 +2,23 @@
 
 合并秋风、217heidai 和 Home DNS 的去广告规则，生成 **Mihomo / Clash Meta** 与 **AdGuard Home / AdGuard DNS** 订阅，保留来源版本、原始文件及内容哈希。使用 Python 标准库和 GitHub Actions，无需自建服务器。
 
-## 当前状态
+## 订阅地址
 
-每 8 小时自动构建并验证规则，通过必要检查后只更新候选通道 `candidate`；稳定通道 `dist` 需要风险审核、设备验收后手动晋升。下方稳定订阅地址继续提供已有版本，新候选不会自动覆盖稳定规则。候选构建状态见 [GitHub Actions](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/actions/workflows/update.yml)。
+**Mihomo / Clash Meta 拦截规则：**
 
-已实现全来源业务保护、规则追溯、差异报告、两种实际内核验证和晋升/回滚工具。真实 Linux 路由器及 App 验收尚未完成；来源可信、内核测试通过均不等于零误拦。
+https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml
 
-## 订阅
+**Mihomo 配套白名单（放行例外，不含拦截规则）：**
 
-| 文件 | 用途 | 地址 |
-| --- | --- | --- |
-| `clash.yaml` | Mihomo Classical 拦截集 | [订阅](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash.yaml) |
-| `clash-allow.yaml` | 配套白名单 | [订阅](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml) |
-| `mihomo.example.yaml` | 合并进现有配置的示例 | [配置片段](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/mihomo.example.yaml) |
-| `adguard.txt` | AdGuard DNS 规则，含例外 | [订阅](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt) |
-| `report.json` | 来源版本、数量及输出哈希 | [报告](https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/report.json) |
-| `SOURCES.md` | 来源核对表 | [查看](https://github.com/MaoLikeQvQ/Home-Adblock-Rules/blob/dist/SOURCES.md) |
+https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/clash-allow.yaml
 
-Mihomo 必须配套使用拦截集和白名单，通过逻辑规则保留原有分流；规则集不含代理节点，不能作为完整代理订阅导入。配置步骤见 [使用指南](docs/usage.md)。
+当前 Mihomo 实现需要两份文件配合：拦截命中黑名单且不在白名单中的连接。白名单继续走现有分流。配置方法见 [使用指南](docs/usage.md)。
+
+**AdGuard Home / AdGuard DNS（已含放行例外，只需一个地址）：**
+
+https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt
+
+以上均为 `dist` 稳定通道的规则订阅，不含代理节点。自动构建只更新 `candidate` 候选通道，完成风险审核及设备验收后才更新稳定通道，详见 [维护指南](docs/maintenance.md)。
 
 ## 上游
 
