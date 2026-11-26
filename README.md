@@ -1,6 +1,6 @@
 # Home-Adblock-Rules
 
-把秋风广告规则与 217heidai AdBlock DNS Filters 合并成自己的去广告规则订阅，同时支持 **Mihomo / Clash Meta** 和 **AdGuard Home / AdGuard DNS**。
+把秋风广告规则、217heidai AdBlock DNS Filters 与 abclq Home DNS Adblock 合并成自己的去广告规则订阅，同时支持 **Mihomo / Clash Meta** 和 **AdGuard Home / AdGuard DNS**。
 
 使用 Python 标准库构建，无需安装第三方 Python 依赖。GitHub Actions 每 8 小时同步上游，规则发布到独立的 `dist` 分支，源码保留在 `main` 分支。
 
@@ -13,10 +13,11 @@
 | [AWAvenue 秋风广告规则](https://github.com/TG-Twilight/AWAvenue-Ads-Rule) | 官方 Clash Classical 规则 | Mihomo |
 | 同一秋风项目 | 官方 AdGuard DNS 规则 | AdGuard Home |
 | [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters) | `dist/adblockdns.txt`，含拦截与放行规则 | 两种格式 |
+| [abclq/home-dns-adblock](https://github.com/abclq/home-dns-adblock) | `dist/adguard-dns-full.txt`，精确规则与社区上游规则的完整订阅 | 两种格式 |
 
 [秋风订阅生成器](https://awavenue.top/Sub.html?tool=clashClassical) 与秋风 GitHub 仓库属于同一个上游，不作为第三个独立规则源。217heidai 本身也收录了秋风；合并时会对相同匹配类型与相同内容去重。
 
-本项目参考了 [home-dns-adblock](https://github.com/abclq/home-dns-adblock) 的自建规则订阅思路，主要提供规则构建与分发。这里没有自动安装 DNS 服务、修改路由器或接入 Tailscale，也没有复制参考项目的 App 专用规则。
+`home-dns-adblock` 同时是参考项目与规则上游。它的完整 AdGuard 文件当前包含 1,019 条去重规则，而单独的 Clash 文件只有 75 条手工规则，所以这里选用完整订阅转换到两种输出。它的系统服务、Tailscale 部署以及 `config/whitelist.txt` 中含特殊穿透例外的服务端策略没有直接搬入；本项目保留完整订阅自身的匹配语义，使用自己的白名单及订阅中的原生例外。
 
 ## 订阅文件
 
@@ -29,9 +30,23 @@
 | `adguard.txt` | AdGuard DNS 订阅，已包含白名单 | `https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/adguard.txt` |
 | `mihomo.example.yaml` | 自动生成的配置片段 | `https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/mihomo.example.yaml` |
 | `report.json` | 每个来源的规则数、SHA-256、生成统计 | `https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/report.json` |
+| `SOURCES.md` | 固定上游版本、文件哈希、重复与实际新增规则的可读核对表 | `https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/dist/SOURCES.md` |
 | `sources/` | 构建用原始规则、配置、脚本与许可 | `dist` 分支同名目录 |
 
 `clash.yaml` 是规则集，需要通过 `rule-providers` 使用；它不包含代理节点，不能作为完整代理配置订阅直接导入。
+
+## 如何核对规则来源
+
+每次在线构建先通过 GitHub API 把上游分支固定到具体提交，再从该提交下载文件，避免只记录一个会继续变化的分支地址。打开 `dist` 分支的 `SOURCES.md`，可以看到每个输入的不可变下载地址、上游提交、原始快照、SHA-256、Git Blob SHA-1，以及合并去重后的实际新增和独有规则示例。完整机器可读证据在 `report.json`。
+
+可将 `report.json` 中某个来源的 `resolved_url` 文件下载后计算 SHA-256，与它的 `sha256` 比较。比如在本地查看 Home DNS 的证据：
+
+```bash
+python3 -c 'import json; r=json.load(open("dist/report.json")); print(next(s for s in r["sources"] if s["id"]=="home-dns"))'
+shasum -a 256 dist/sources/home-dns.txt
+```
+
+来源之间会互相收录，不能把上游条数直接相加。报告中的“新增”“独有”按完全相同的规范化规则计算；精确域名与后缀规则不视作同一条，也不把这些数字等同于新增覆盖的域名数量。上游自身更新也可能让总条数下降，应结合每个固定版本核对。
 
 ## Mihomo / Clash Meta 用法
 

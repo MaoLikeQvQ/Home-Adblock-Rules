@@ -50,6 +50,8 @@ jobs:
             exit 1
           fi
       - name: Build from live upstreams
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/build.py
       - uses: actions/upload-artifact@v4
         with:

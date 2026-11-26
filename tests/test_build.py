@@ -2,10 +2,11 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from scripts.build import (
     adguard_to_classical, build, classical_to_adguard, domain, local_rules,
-    parse_adguard, parse_classical,
+    parse_adguard, parse_classical, pin_sources,
 )
 
 
@@ -66,6 +67,16 @@ payload:
             with self.assertRaises(ValueError):
                 local_rules(path, allow=True)
 
+    def test_github_sources_are_pinned_to_one_commit_per_branch(self):
+        sources = [{"id": "one", "url": "https://raw.githubusercontent.com/owner/repo/main/one.txt"},
+                   {"id": "two", "url": "https://raw.githubusercontent.com/owner/repo/main/two.txt"}]
+        commit = "a" * 40
+        response = json.dumps({"object": {"type": "commit", "sha": commit}}).encode()
+        with patch("scripts.build.fetch", return_value=response) as mocked:
+            evidence = pin_sources(sources)
+        self.assertEqual(mocked.call_count, 1)
+        self.assertEqual(evidence["two"]["resolved_url"], f"https://raw.githubusercontent.com/owner/repo/{commit}/two.txt")
+
 
 class BuildTests(unittest.TestCase):
     def setUp(self):
@@ -83,7 +94,7 @@ class BuildTests(unittest.TestCase):
         (self.root / "config/sources.json").write_text(json.dumps({"sources": sources}))
         (self.root / "config/blocklist.txt").write_text("DOMAIN,local.example.org\n")
         (self.root / "config/allowlist.txt").write_text("DOMAIN,local.example.org\nDOMAIN-SUFFIX,custom.example.com\n")
-        for name in ["LICENSE", "NOTICE.md", "scripts/build.py", "licenses/AWAvenue-LICENSE", "licenses/217heidai-LICENSE"]:
+        for name in ["LICENSE", "NOTICE.md", "scripts/build.py", "licenses/AWAvenue-LICENSE", "licenses/217heidai-LICENSE", "licenses/home-dns-adblock-LICENSE"]:
             (self.root / name).write_text("fixture\n")
         self.source = self.inputs / "test.txt"
         self.source.write_text("||example.com^\n||other.example.net^\n||example.com^\n@@||api.example.com^\n")
@@ -136,6 +147,53 @@ class BuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "dropped"):
             self.generate()
         self.assertEqual((self.output / "report.json").read_bytes(), previous)
+
+    def test_source_contribution_is_based_on_actual_rules(self):
+        config = self.root / "config/sources.json"
+        sources = json.loads(config.read_text())
+        second = {**sources["sources"][0], "id": "second"}
+        sources["sources"].append(second)
+        config.write_text(json.dumps(sources))
+        (self.inputs / "second.txt").write_text("||example.com^\n||new.example.org^\n")
+        report = self.generate()
+        summary = report["sources"][1]["contribution"]["adguard"]
+        self.assertEqual(summary["input_block_rules"], 2)
+        self.assertEqual(summary["added_after_previous_sources"], 1)
+        self.assertEqual(summary["duplicates_with_previous_sources"], 1)
+        self.assertEqual(summary["exclusive_examples"], ["||new.example.org^"])
+        self.assertTrue((self.output / "SOURCES.md").exists())
+        self.assertIn("adguard.txt", report["output_sha256"])
+
+    def test_tampered_source_snapshot_is_rejected(self):
+        self.generate()
+        snapshot = self.output / "sources/test.txt"
+        snapshot.write_text("||tampered.example.com^\n||other.example.net^\n")
+        with self.assertRaisesRegex(ValueError, "hash mismatch"):
+            build(self.root, self.output, "owner/repo", self.output / "sources")
+
+    def test_pinned_live_build_can_be_reproduced_offline(self):
+        config = self.root / "config/sources.json"
+        sources = json.loads(config.read_text())
+        sources["sources"][0]["url"] = "https://raw.githubusercontent.com/owner/repo/main/rules.txt"
+        config.write_text(json.dumps(sources))
+        data = self.source.read_bytes()
+        def response(url):
+            if url.startswith("https://api.github.com/"):
+                return json.dumps({"object": {"type": "commit", "sha": "a" * 40}}).encode()
+            self.assertIn("/" + "a" * 40 + "/", url)
+            return data
+        with patch("scripts.build.fetch", side_effect=response):
+            build(self.root, self.output, "owner/repo")
+        previous = {p.relative_to(self.output): p.read_bytes() for p in self.output.rglob("*") if p.is_file()}
+        build(self.root, self.output, "owner/repo", self.output / "sources")
+        self.assertEqual(previous, {p.relative_to(self.output): p.read_bytes() for p in self.output.rglob("*") if p.is_file()})
+
+    def test_home_dns_is_a_required_full_source(self):
+        root = Path(__file__).resolve().parents[1]
+        sources = json.loads((root / "config/sources.json").read_text())["sources"]
+        source = next(item for item in sources if item["id"] == "home-dns")
+        self.assertEqual(source["targets"], ["clash", "adguard"])
+        self.assertTrue(source["url"].endswith("/dist/adguard-dns-full.txt"))
 
 
 if __name__ == "__main__":
