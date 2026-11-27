@@ -552,13 +552,6 @@ Broader suffix replaced exact/subdomain
 - 目标：unknown
 - 规则：`DOMAIN-SUFFIX,triangle.com.data.adobedc.net`
 
-### scope-41e2cf8639695bea
-
-Broader suffix replaced exact/subdomain
-
-- 目标：unknown
-- 规则：`DOMAIN-SUFFIX,weplayer.cc`
-
 ### scope-c342922d0f506c1f
 
 Broader suffix replaced exact/subdomain
@@ -590,13 +583,6 @@ Broader suffix replaced exact/subdomain
 
 - 目标：unknown
 - 规则：`||triangle.com.data.adobedc.net^`
-
-### scope-d18c550010a5fe40
-
-Broader suffix replaced exact/subdomain
-
-- 目标：unknown
-- 规则：`||weplayer.cc^`
 
 ### scope-d48f974f01964e78
 

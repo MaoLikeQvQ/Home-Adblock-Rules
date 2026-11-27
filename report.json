@@ -137,20 +137,20 @@
         "adguard"
       ],
       "min_rules": 10000,
-      "upstream_commit": "4c4fda524b0cb301064e260d68fe5a568345ae48",
-      "resolved_url": "https://raw.githubusercontent.com/217heidai/adblockfilters/4c4fda524b0cb301064e260d68fe5a568345ae48/adblockdns.txt",
-      "sha256": "3cbe42927becb4008603c95646a03e389c74c9aa9a5a4795f2dcf09dc5f244e7",
-      "git_blob_sha1": "0514b8d6b3fbba004017fb6fda3aeafa2ef29c58",
+      "upstream_commit": "94fe11c2cbafe316f410946324bf2f576688d727",
+      "resolved_url": "https://raw.githubusercontent.com/217heidai/adblockfilters/94fe11c2cbafe316f410946324bf2f576688d727/adblockdns.txt",
+      "sha256": "d815ac6bfda26e019c265257c8400a56f8a809410265c818ec7d85a79fab4d9c",
+      "git_blob_sha1": "0265a8724c2dbd6d0da527fdf4e00dce56cee020",
       "snapshot": "sources/heidai-dns.txt",
-      "block_rules": 253854,
+      "block_rules": 254072,
       "allow_rules": 198,
       "contribution": {
         "clash": {
-          "input_block_rules": 253854,
-          "added_after_previous_sources": 253845,
+          "input_block_rules": 254072,
+          "added_after_previous_sources": 254063,
           "duplicates_with_previous_sources": 9,
-          "retained_in_output": 253820,
-          "exclusive_block_rules": 253202,
+          "retained_in_output": 254038,
+          "exclusive_block_rules": 253420,
           "exclusive_examples": [
             "DOMAIN-SUFFIX,0--d.com",
             "DOMAIN-SUFFIX,0-0.fr",
@@ -165,11 +165,11 @@
           ]
         },
         "adguard": {
-          "input_block_rules": 253854,
-          "added_after_previous_sources": 253252,
+          "input_block_rules": 254072,
+          "added_after_previous_sources": 253470,
           "duplicates_with_previous_sources": 602,
-          "retained_in_output": 253821,
-          "exclusive_block_rules": 253187,
+          "retained_in_output": 254039,
+          "exclusive_block_rules": 253405,
           "exclusive_examples": [
             "||0--d.com^",
             "||0-0.fr^",
@@ -197,8 +197,8 @@
         "adguard"
       ],
       "min_rules": 500,
-      "upstream_commit": "cb0534577075948526529f53c9c5f5b360966cf5",
-      "resolved_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/cb0534577075948526529f53c9c5f5b360966cf5/dist/adguard-dns-full.txt",
+      "upstream_commit": "41306f99c47407bff9146e690c65e93e0501030e",
+      "resolved_url": "https://raw.githubusercontent.com/abclq/home-dns-adblock/41306f99c47407bff9146e690c65e93e0501030e/dist/adguard-dns-full.txt",
       "sha256": "2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3",
       "git_blob_sha1": "98bde2862bf79d75b69e3a52b302b923940f9363",
       "snapshot": "sources/home-dns.txt",
@@ -247,16 +247,16 @@
     }
   ],
   "counts": {
-    "clash_block": 255206,
+    "clash_block": 255424,
     "clash_allow": 198,
-    "adguard_block": 254227,
+    "adguard_block": 254445,
     "adguard_allow": 198
   },
   "local_clash_only_rules": [],
   "deduplication": "identical normalized rules; matching scope preserved",
   "output_sha256": {
-    "clash.yaml": "f1943267e066025c7ce86a519dee5ce5aab84ec904b455bbb63ceb48726214a7",
+    "clash.yaml": "d7246946c820a03c4db88d5e243a772f2265af66e16c2113b63eaef88b0fbfd4",
     "clash-allow.yaml": "d6df8e84c519ed9266409d19f06c71d50e419ddd4479a00f804defeb9346af77",
-    "adguard.txt": "48eac1440ae6630d37f2fab15495c05d0157c1847b4f35f8c3ecbb05acf38f99"
+    "adguard.txt": "b2681e24ade315c265e11b40a1f81d9277aef44819ef4d5d6baa6c13ecee54d4"
   }
 }

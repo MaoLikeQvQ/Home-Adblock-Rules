@@ -2680,8 +2680,8 @@
   },
   "validation_config_sha256": "49bf8d0bb92958f50f14de9b8439106bb5a68bb6c6c66731df904e0daa5842f3",
   "output_sha256": {
-    "clash.yaml": "f1943267e066025c7ce86a519dee5ce5aab84ec904b455bbb63ceb48726214a7",
+    "clash.yaml": "d7246946c820a03c4db88d5e243a772f2265af66e16c2113b63eaef88b0fbfd4",
     "clash-allow.yaml": "d6df8e84c519ed9266409d19f06c71d50e419ddd4479a00f804defeb9346af77",
-    "adguard.txt": "48eac1440ae6630d37f2fab15495c05d0157c1847b4f35f8c3ecbb05acf38f99"
+    "adguard.txt": "b2681e24ade315c265e11b40a1f81d9277aef44819ef4d5d6baa6c13ecee54d4"
   }
 }
