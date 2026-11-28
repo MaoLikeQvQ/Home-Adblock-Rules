@@ -1,0 +1,12 @@
+# 合并进现有 Mihomo 配置；这是规则片段，不是代理节点订阅。
+rule-providers:
+  home-adblock:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/MaoLikeQvQ/Home-Adblock-Rules/55df61749f7b727a66a18b8c3e195561335ad4f0/clash.yaml
+    path: ./ruleset/home-adblock.yaml
+    interval: 28800
+rules:
+  # 白名单已在构建时处理；放在广泛匹配规则和 MATCH 前。
+  - RULE-SET,home-adblock,REJECT
