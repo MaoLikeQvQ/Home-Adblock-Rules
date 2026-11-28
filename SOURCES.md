@@ -54,13 +54,13 @@ DOMAIN,ad-cdn.qingting.fm
 ## 217heidai AdBlock DNS Filters
 
 - 项目：https://github.com/217heidai/adblockfilters
-- 实际下载：https://raw.githubusercontent.com/217heidai/adblockfilters/0dced6e72658d2b8c3bc10684c24a2ca301a64a2/adblockdns.txt
+- 实际下载：https://raw.githubusercontent.com/217heidai/adblockfilters/dac7e7f846ba8d40060ca6f7fd82b03b53db3620/adblockdns.txt
 - 原始快照：[sources/heidai-dns.txt](sources/heidai-dns.txt)
-- 上游提交：`0dced6e72658d2b8c3bc10684c24a2ca301a64a2`
-- SHA-256：`4fe9522e1a0e70ae7571f10b2ae84de3681454c6931c99a7dff4dc13f925b5fb`
-- Git Blob SHA-1：`b37251612f48675201539c245384eb983f312f76`
-- 解析结果：拦截 255140 条，放行 197 条。
-- clash：按来源顺序新增 255131 条；与之前来源重复 9 条；最终保留 255106 条；该来源独有 254480 条。
+- 上游提交：`dac7e7f846ba8d40060ca6f7fd82b03b53db3620`
+- SHA-256：`dc86a80449a968b7efb09a3c260dd25ef60c3245ce4598b21a610da4546d2030`
+- Git Blob SHA-1：`57640283892e7d528b8346faa00af76f92bfcbce`
+- 解析结果：拦截 255585 条，放行 197 条。
+- clash：按来源顺序新增 255576 条；与之前来源重复 9 条；最终保留 255551 条；该来源独有 254925 条。
 
 独有规则示例：
 
@@ -77,7 +77,7 @@ DOMAIN-SUFFIX,0.net.easyjet.com
 DOMAIN-SUFFIX,0.nextyourcontent.com
 ```
 
-- adguard：按来源顺序新增 254529 条；与之前来源重复 611 条；最终保留 255107 条；该来源独有 254465 条。
+- adguard：按来源顺序新增 254974 条；与之前来源重复 611 条；最终保留 255552 条；该来源独有 254910 条。
 
 独有规则示例：
 
@@ -98,9 +98,9 @@ DOMAIN-SUFFIX,0.nextyourcontent.com
 ## abclq Home DNS Adblock（精确规则 + 上游全量）
 
 - 项目：https://github.com/abclq/home-dns-adblock
-- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/d401e2c35fb48ee7d47487e547c9105b1623938f/dist/adguard-dns-full.txt
+- 实际下载：https://raw.githubusercontent.com/abclq/home-dns-adblock/62bacd9394e17f9c44aa4764d4dc133ac572960d/dist/adguard-dns-full.txt
 - 原始快照：[sources/home-dns.txt](sources/home-dns.txt)
-- 上游提交：`d401e2c35fb48ee7d47487e547c9105b1623938f`
+- 上游提交：`62bacd9394e17f9c44aa4764d4dc133ac572960d`
 - SHA-256：`2de281f86a2c977dec3169d59ae2c2764311f184426038d10a4941d0b0d823f3`
 - Git Blob SHA-1：`98bde2862bf79d75b69e3a52b302b923940f9363`
 - 解析结果：拦截 1019 条，放行 0 条。
